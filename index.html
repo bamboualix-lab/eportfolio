@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alix Bambou · ePortfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Outfit:wght@300;400;500;600;700&family=Sora:wght@600;700;800&family=Oswald:wght@500;600;700&family=Open+Sans:wght@400;600;700&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Editorial bands (wine / blush / cream) from the reference, warmed with Alix's coral-orange as the action colour.
+     Serif caps headlines + one script word; Outfit for reading; polaroids for photos. */
+  --wine:#6B1A24;
+  --wine-deep:#4C1119;
+  --rose:#D9879E;
+  --blush:#F3DCDE;
+  --sand:#F1E9D3;
+  --cream:#F8F3EC;
+  --paper:#FCFAF7;
+  --ink:#2B1417;
+  --muted:#7A6567;
+  --orange:#F0653A;
+  --orange-2:#F8952C;
+  --grad:linear-gradient(100deg,var(--orange),var(--orange-2));
+  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --heavy:"Sora", "Arial Black", system-ui, sans-serif;
+  --body:"Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --script:"Allura", "Snell Roundhand", cursive;
+  --r:22px;
+  --wrap:1180px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;font-weight:400}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+[data-lang="fr"] [lang="en"]:not(html){display:none!important}
+[data-lang="en"] [lang="fr"]:not(html){display:none!important}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.caps{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:1.02}
+.script{font-family:var(--script);text-transform:none;font-weight:400;letter-spacing:0;line-height:.8}
+.kicker{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:500;border-radius:999px;padding:6px 14px;background:rgba(240,101,58,.12);color:var(--orange)}
+.pill svg{width:14px;height:14px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:14px 26px;font:600 .82rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .2s, box-shadow .2s, background .2s}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 10px 26px -10px rgba(240,101,58,.7)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(240,101,58,.8)}
+.btn-rose{background:var(--rose);color:#fff}
+.btn-rose:hover{background:var(--wine)}
+.btn-line{background:transparent;color:currentColor;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn-line:hover{background:rgba(255,255,255,.18)}
+
+/* NAV */
+.nav{position:sticky;top:12px;z-index:30;padding:0 clamp(10px,2vw,24px)}
+.nav-bar{max-width:1240px;margin:0 auto;background:var(--wine);color:var(--cream);border-radius:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:10px 12px 10px 22px;box-shadow:0 12px 30px -18px rgba(76,17,25,.8)}
+.nav-links{display:flex;gap:18px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.nav-links a{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;opacity:.82;white-space:nowrap;padding:4px 0;border-bottom:1.5px solid transparent}
+.nav-links a:hover,.nav-links a.on{opacity:1;border-color:var(--orange-2)}
+.brand{font-family:var(--display);font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--orange-2);font-weight:400}
+.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:10px}
+.lang{display:flex;border-radius:999px;background:rgba(255,255,255,.1);padding:3px}
+.lang button{border:0;background:transparent;color:var(--cream);font:600 .7rem/1 var(--body);letter-spacing:.1em;padding:7px 10px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--cream);color:var(--wine)}
+.nav .btn{padding:11px 18px;font-size:.7rem}
+@media (max-width:980px){.nav-links{display:none}.nav-bar{grid-template-columns:auto 1fr}.brand{order:-1}}
+@media (max-width:520px){.nav .btn-grad{display:none}}
+
+/* HERO */
+.hero{position:relative;margin-top:-64px;background:linear-gradient(90deg,#D5D2CD 0%,#C9C6C1 55%,#BDBAB5 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:end;min-height:640px}
+.hero-text{padding:150px 0 80px;position:relative;z-index:2}
+.hero h1{font-family:var(--display);text-transform:uppercase;color:var(--wine);font-size:clamp(2.6rem,6vw,4.9rem);line-height:.98;letter-spacing:-.005em}
+.hero h1 .script{display:inline-block;color:var(--orange);font-size:1.25em;margin:0 .08em;transform:translateY(.12em)}
+.hero .kicker{color:var(--wine);display:block;margin-bottom:18px}
+.hero-lede{max-width:46ch;margin-top:24px;color:#3d2a2c;font-size:1.05rem}
+.hero-lede b{font-weight:600;color:var(--wine)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero .btn-line{color:var(--wine)}
+.hero-photo{position:relative;align-self:stretch}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
+.seal{position:absolute;right:clamp(16px,4vw,48px);bottom:36px;width:126px;height:126px;z-index:3;color:#fff}
+.seal svg{width:100%;height:100%}
+.seal .ring{transform-origin:50% 50%}
+@media (prefers-reduced-motion:no-preference){.seal .ring{animation:spin 22s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  .hero-text > *{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}.hero-text > *:nth-child(2){animation-delay:.08s}.hero-text > *:nth-child(3){animation-delay:.16s}.hero-text > *:nth-child(4){animation-delay:.24s}
+  @keyframes rise{from{transform:translateY(16px)}to{transform:none}}}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-text{padding:130px 0 30px}
+  .hero-photo{height:420px}
+  .hero-photo img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 25%);mask-image:linear-gradient(180deg,transparent 0,#000 25%)}
+}
+
+/* STATS */
+.stats{background:var(--cream);padding:46px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{border-radius:var(--r);padding:22px 24px;display:grid;gap:4px}
+.stat b{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.2rem);line-height:1;font-weight:500;font-variant-numeric:tabular-nums}
+.stat span{font-size:.92rem}
+.s1{background:var(--wine);color:var(--cream)}.s1 b{color:var(--orange-2)}
+.s2{background:var(--blush);color:var(--wine)}
+.s3{background:var(--sand);color:var(--ink)}.s3 b{color:var(--orange)}
+.s4{background:var(--grad);color:#fff}
+@media (max-width:820px){.stats-grid{grid-template-columns:1fr 1fr}}
+
+/* section heads */
+.band{padding:clamp(70px,9vw,110px) 0}
+.head{text-align:center;max-width:760px;margin:0 auto 46px;display:grid;justify-items:center;gap:14px}
+.head h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1}
+.head h2 .script{display:block;font-size:1.15em;margin-top:.12em}
+.head p{color:var(--muted);max-width:62ch}
+.head p.hint{font-size:.88rem;font-weight:600;color:var(--wine)}
+.on-wine{background:var(--wine);color:var(--cream)}
+.on-wine .head p{color:#E7CFD1}
+.on-wine .head h2 .script{color:var(--orange-2)}
+.on-blush{background:var(--blush)}
+.on-blush .head h2,.on-cream .head h2,.on-paper .head h2{color:var(--wine)}
+.on-blush .head h2 .script,.on-cream .head h2 .script,.on-paper .head h2 .script{color:var(--orange)}
+.on-cream{background:var(--cream)}
+.on-paper{background:var(--paper)}
+
+/* polaroid */
+.pola{background:#fff;padding:10px 10px 38px;box-shadow:0 18px 40px -18px rgba(43,20,23,.55);transform:rotate(var(--rot,-4deg));width:max-content;max-width:100%}
+.pola img{width:var(--w,190px);aspect-ratio:var(--ar,4/5);object-fit:cover}
+.pola figcaption{font-family:var(--script);font-size:1.5rem;color:var(--ink);text-align:center;margin-top:6px;line-height:1}
+
+/* ABOUT intro (wine band) */
+.intro{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,56px);align-items:center}
+.intro .center{text-align:center;display:grid;gap:18px;justify-items:center}
+.intro h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.02}
+.intro h2 .script{display:block;color:var(--orange-2);font-size:1.15em;margin-top:.1em}
+.intro p{max-width:54ch;color:#EAD5D7;font-size:.98rem}
+.intro .pola:first-child{--rot:-6deg;--w:150px}
+.intro .pola:last-child{--rot:5deg;--w:200px;--ar:4/3}
+@media (max-width:900px){.intro{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.intro .pola:first-child{--w:120px}.intro .pola:last-child{--w:140px}.intro .center{grid-column:1 / -1;grid-row:1}.intro .pola{justify-self:center}}
+
+/* TABS (blush band) */
+.tabs{max-width:980px;margin:0 auto}
+.tablist{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tablist button{border:0;border-radius:14px 14px 0 0;padding:13px 10px;font:600 .7rem/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .2s;transform:translateY(6px)}
+.tablist button[aria-selected="true"]{transform:none}
+.t1{background:var(--rose);color:#fff}.t2{background:var(--wine);color:var(--cream)}.t3{background:var(--sand);color:var(--wine)}.t4{background:var(--wine-deep);color:var(--cream)}
+.panel{background:var(--wine);color:var(--cream);border-radius:0 0 var(--r) var(--r);padding:clamp(24px,4vw,46px);position:relative;z-index:1}
+.panel[hidden]{display:none}
+.panel h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05;margin-bottom:16px}
+.panel h3 .script{color:var(--orange-2);font-size:1.2em}
+.panel-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,4vw,46px);align-items:start}
+.panel .muted{color:#E3C9CC}
+.facts{display:grid;gap:10px;margin:6px 0 20px}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:12px;border-bottom:1px solid rgba(248,243,236,.18);padding-bottom:9px;font-size:.95rem}
+.facts li span:first-child{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);padding-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border-radius:999px;padding:6px 14px;font-size:.85rem;background:rgba(248,243,236,.12);color:var(--cream)}
+.chip.o{background:var(--grad);color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ticks li{position:relative;padding-left:28px;margin-bottom:10px;font-size:.95rem}
+.ticks li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;background:var(--grad)}
+.ticks li::after{content:"";position:absolute;left:5px;top:calc(.35em + 4px);width:5px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.crosses li{position:relative;padding-left:28px;margin-bottom:10px;font-size:.95rem;color:#E3C9CC}
+.crosses li::before{content:"–";position:absolute;left:4px;color:var(--rose);font-weight:600}
+.lbl{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:10px;font-weight:600}
+.seg{display:inline-flex;background:rgba(248,243,236,.1);border-radius:999px;padding:4px;margin-bottom:20px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--cream);font:600 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:999px;cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--cream);color:var(--wine)}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.points[hidden]{display:none}
+.point{background:rgba(248,243,236,.08);border:1px solid rgba(248,243,236,.16);border-radius:16px;padding:18px}
+.point b{font-family:var(--display);font-weight:500;font-size:1.12rem;display:block;margin-bottom:8px}
+.point p{font-size:.92rem}
+.point p + p{margin-top:8px;color:#E3C9CC;font-size:.86rem}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quad > div{border-radius:16px;padding:18px 20px}
+.quad > div:nth-child(1){background:var(--rose);color:#fff}
+.quad > div:nth-child(2){background:var(--sand);color:var(--ink)}
+.quad > div:nth-child(3){background:rgba(248,243,236,.1)}
+.quad > div:nth-child(4){background:var(--grad);color:#fff}
+.quad h4{margin:0 0 8px;font-family:var(--script);font-size:1.9rem;font-weight:400;line-height:1}
+.quad li{font-size:.94rem;margin-bottom:3px}
+.bars{display:grid;gap:12px;max-width:360px}
+.bar-row{display:grid;grid-template-columns:80px 1fr 46px;gap:10px;align-items:center;font-size:.92rem}
+.bar{height:8px;border-radius:999px;background:rgba(248,243,236,.18);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--grad);border-radius:999px}
+@media (max-width:760px){.tablist{grid-template-columns:1fr 1fr}.tablist button{transform:none;border-radius:12px}.tablist{margin-bottom:6px}.panel{border-radius:var(--r)}.panel-grid,.two,.points,.quad{grid-template-columns:1fr}.panel-grid .pola{justify-self:center}}
+
+/* EXPERIENCES */
+.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
+.filters button{border:1.5px solid rgba(107,26,36,.25);background:#fff;color:var(--wine);border-radius:999px;padding:9px 16px;font:500 .84rem/1 var(--body);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+.xp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.xp{border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:12px;cursor:pointer;text-align:left;border:0;font:inherit;color:inherit;transition:transform .25s, box-shadow .25s;position:relative}
+.xp:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(43,20,23,.6)}
+.xp.hide{display:none}
+.xp-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.xp .tag{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:5px 11px;background:rgba(255,255,255,.22)}
+.xp .arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);transition:transform .3s, background .3s;flex:none}
+.xp:hover .arrow{transform:rotate(45deg);background:var(--grad);color:#fff}
+.xp h3{font-family:var(--display);font-size:1.5rem;line-height:1.12}
+.xp .org{font-size:.85rem;opacity:.8;margin-top:-6px}
+.xp .sum{font-size:.94rem;opacity:.92}
+.xp .when{margin-top:auto;align-self:flex-start;font-size:.78rem;font-weight:600;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.9);color:var(--wine)}
+.xp:nth-child(5n+1){background:var(--wine);color:var(--cream)}
+.xp:nth-child(5n+2){background:var(--blush);color:var(--ink)}
+.xp:nth-child(5n+3){background:var(--rose);color:#fff}
+.xp:nth-child(5n+4){background:var(--sand);color:var(--ink)}
+.xp:nth-child(5n+5){background:var(--wine-deep);color:var(--cream)}
+.xp:nth-child(5n+2) .tag,.xp:nth-child(5n+4) .tag{background:rgba(240,101,58,.14);color:var(--orange)}
+.xp:nth-child(5n+2) .arrow,.xp:nth-child(5n+4) .arrow{background:rgba(107,26,36,.08)}
+.xp:nth-child(5n+1) .when,.xp:nth-child(5n+5) .when{background:var(--grad);color:#fff}
+.xp .detail{display:none}
+.xp.feature{grid-column:span 2}
+@media (max-width:980px){.xp-grid{grid-template-columns:1fr 1fr}.xp.feature{grid-column:span 2}}
+@media (max-width:620px){.xp-grid{grid-template-columns:1fr}.xp.feature{grid-column:auto}}
+
+/* case study dialog */
+dialog.case{border:0;border-radius:26px;padding:0;width:min(960px,94vw);max-height:90vh;background:var(--paper);color:var(--ink);box-shadow:0 40px 80px -30px rgba(43,20,23,.7)}
+dialog.case::backdrop{background:rgba(76,17,25,.6);backdrop-filter:blur(3px)}
+.case-head{background:var(--wine);color:var(--cream);padding:30px clamp(22px,4vw,40px);position:relative}
+.case-head h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.05;margin:12px 0 6px;padding-right:50px}
+.case-head .org{color:#E7CFD1}
+.case-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(248,243,236,.14);color:var(--cream);font-size:1.1rem;cursor:pointer}
+.case-close:hover{background:var(--grad)}
+.case-body{padding:clamp(22px,4vw,40px);display:grid;gap:28px}
+.case-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{border-radius:18px;padding:20px;background:var(--cream)}
+.step:nth-child(2){background:var(--blush)}
+.step:nth-child(3){background:var(--sand)}
+.step .n{font-family:var(--script);font-size:2rem;color:var(--orange);line-height:1;display:block;margin-bottom:6px}
+.step h4{margin:0 0 10px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--wine)}
+.step p,.step li{font-size:.93rem}
+.step .ticks li::before{width:15px;height:15px}
+.case-photos{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;padding:6px 0 10px}
+.case-photos .pola{--w:180px}
+.case-photos .pola:nth-child(2n){--rot:3deg}
+.case-photos button{border:0;background:none;padding:0;cursor:zoom-in}
+.case-soon{text-align:center;font-family:var(--script);font-size:1.8rem;color:var(--muted)}
+@media (max-width:760px){.case-steps{grid-template-columns:1fr}.case-photos .pola{--w:130px}}
+
+/* VOYAGES */
+.travel{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.stamp{border:0;border-radius:16px;background:#fff;padding:14px 16px;text-align:left;cursor:pointer;font:inherit;color:var(--ink);display:grid;gap:2px;transition:transform .2s, box-shadow .2s;box-shadow:0 8px 20px -16px rgba(43,20,23,.5)}
+.stamp:hover{transform:translateY(-2px)}
+.stamp[aria-pressed="true"]{background:var(--wine);color:var(--cream)}
+.stamp b{font-family:var(--display);font-weight:500;font-size:1.12rem}
+.stamp span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stamp[aria-pressed="true"] span{color:var(--orange-2)}
+.cam{background:var(--wine-deep);border-radius:28px;padding:18px;color:var(--cream);box-shadow:0 30px 50px -30px rgba(43,20,23,.8)}
+.cam-top{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;gap:10px}
+.cam-top .rec{display:flex;align-items:center;gap:8px}
+.cam-top .rec::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--grad)}
+.screen{position:relative;border-radius:16px;overflow:hidden;background:#2a1418;aspect-ratio:4/5;max-height:560px;width:100%}
+.screen img{width:100%;height:100%;object-fit:cover}
+.screen .empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle at 30% 30%,#7a2430,#4C1119 70%)}
+.screen .empty div{font-family:var(--script);font-size:3rem;color:var(--cream);line-height:1}
+.screen .empty small{display:block;font-family:var(--body);font-size:.7rem;letter-spacing:.14em;margin-top:14px;color:var(--rose);text-transform:uppercase}
+.screen .stamp-date{position:absolute;right:12px;bottom:10px;font-family:ui-monospace,monospace;color:#ffb35c;font-size:.85rem;text-shadow:0 0 6px rgba(255,140,40,.6)}
+.cam-ctrl{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:12px}
+.cam-ctrl h3{font-family:var(--display);text-transform:uppercase;font-size:1.5rem}
+.cam-ctrl p{font-size:.9rem;color:#E3C9CC;margin-top:4px;max-width:46ch}
+.pad{display:flex;gap:6px;flex:none}
+.pad button{width:44px;height:44px;border-radius:50%;border:0;background:rgba(248,243,236,.14);color:var(--cream);cursor:pointer}
+.pad button:hover:not(:disabled){background:var(--grad)}
+.pad button:disabled{opacity:.3;cursor:default}
+@media (max-width:860px){.travel{grid-template-columns:1fr}.screen{aspect-ratio:4/4.4}}
+
+/* ENGAGEMENTS */
+.eng{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.eng-card{border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;min-height:250px}
+.eng-card .big{font-family:var(--display);font-size:3.6rem;line-height:.9;font-weight:500}
+.eng-card .big small{font-family:var(--script);font-size:.55em;margin-left:6px;font-weight:400}
+.eng-card .lbl{color:inherit;opacity:.8}
+.eng-card p{font-size:.94rem}
+.dots{display:flex;gap:4px;margin-top:auto}
+.dots i{flex:1;height:6px;border-radius:999px;background:currentColor;opacity:.9}
+.dots i.off{opacity:.2}
+@media (max-width:980px){.eng{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.eng{grid-template-columns:1fr}}
+
+/* CV */
+.cv-bar{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.cv-msg{text-align:center;font-size:.85rem;color:var(--muted);min-height:1.4em;margin-bottom:18px}
+.cv{background:#fff;border-radius:26px;display:grid;grid-template-columns:290px 1fr;overflow:hidden;box-shadow:0 40px 70px -40px rgba(43,20,23,.5)}
+.cv aside{background:var(--wine);color:var(--cream);padding:30px 26px;display:grid;gap:22px;align-content:start}
+.cv aside img{border-radius:50%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;width:150px;margin:0 auto;border:4px solid var(--rose)}
+.cv h4{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;padding-bottom:8px;font-weight:600}
+.cv aside h4{color:var(--orange-2);border-bottom:1px solid rgba(248,243,236,.2)}
+.cv aside li{font-size:.9rem;margin-bottom:4px}
+.cv aside .lv{display:flex;justify-content:space-between}
+.cv aside a{color:var(--cream)}
+.cv main{padding:34px clamp(22px,3vw,44px);display:grid;gap:26px;min-width:0}
+.cv-name{font-family:var(--display);text-transform:uppercase;font-size:clamp(2rem,4vw,2.8rem);color:var(--wine);line-height:1}
+.cv-role{font-family:var(--script);font-size:1.9rem;color:var(--orange);line-height:1.1;margin-top:4px}
+.cv main h4{color:var(--wine);border-bottom:1.5px solid var(--blush)}
+.cv-skills{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cv-skills > span{border-radius:10px;padding:8px 12px;font-size:.86rem;background:var(--cream)}
+.cv-job{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:12px 0;border-bottom:1px dashed rgba(107,26,36,.2)}
+.cv-job:last-child{border-bottom:0}
+.cv-job b{font-weight:600;font-size:1rem;color:var(--ink)}
+.cv-job .d{font-size:.78rem;font-weight:500;color:var(--orange);white-space:nowrap;text-align:right}
+.cv-job .o{grid-column:1 / -1;color:var(--muted);font-size:.88rem}
+.cv-job ul{grid-column:1 / -1;margin:6px 0 0;padding-left:18px;font-size:.88rem;list-style:disc}
+.cv-job ul li::marker{color:var(--rose)}
+@media (max-width:820px){.cv{grid-template-columns:1fr}.cv-skills{grid-template-columns:1fr 1fr}}
+
+/* CONTACT */
+.cta{background:var(--wine);color:var(--cream);border-radius:30px;padding:clamp(40px,7vw,80px) clamp(22px,5vw,60px);text-align:center;display:grid;justify-items:center;gap:18px;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(248,149,44,.35),transparent 65%);top:-200px;right:-140px}
+.cta h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;position:relative}
+.cta h2 .script{display:block;color:var(--orange-2);font-size:1.2em}
+.cta p{color:#E7CFD1;max-width:50ch;position:relative}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:860px;margin-top:10px;position:relative}
+.c-card{background:rgba(248,243,236,.08);border:1px solid rgba(248,243,236,.18);border-radius:18px;padding:18px;display:grid;gap:6px;justify-items:center;text-decoration:none;min-width:0}
+.c-card b{font-weight:500;overflow-wrap:anywhere}
+.c-card .mini{border:0;border-radius:999px;padding:6px 14px;font:600 .7rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;background:var(--cream);color:var(--wine);cursor:pointer}
+a.c-card:hover .mini,.c-card .mini:hover{background:var(--grad);color:#fff}
+@media (max-width:760px){.c-grid{grid-template-columns:1fr}}
+footer{padding:28px 0 36px;font-size:.8rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* lightbox */
+dialog.lb{border:0;border-radius:18px;padding:0;max-width:min(92vw,1000px);background:var(--wine-deep)}
+dialog.lb::backdrop{background:rgba(43,20,23,.8)}
+dialog.lb img{max-height:82vh;width:auto;margin:0 auto}
+dialog.lb .lb-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:var(--cream);font-size:.85rem;gap:10px}
+dialog.lb button{border:0;background:rgba(248,243,236,.14);color:var(--cream);border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+/* ---- v4: impactful hero type ---- */
+.hero h1{font-family:var(--heavy);text-transform:none;font-weight:800;letter-spacing:-.035em;line-height:1.02;font-size:clamp(2.7rem,5.8vw,4.8rem);color:var(--wine)}
+.hero h1 .hl{position:relative;display:inline-block;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.04em}
+.hero h1 .hl svg{position:absolute;left:-2%;bottom:-.12em;width:104%;height:.32em;overflow:visible}
+.hero .kicker{font-weight:700}
+.hero-lede{font-size:1.1rem;color:#3a2427}
+
+/* ---- v4: timeline ---- */
+.timeline{list-style:none;margin:0 auto;padding:0;position:relative;max-width:1000px}
+.timeline::before{content:"";position:absolute;left:191px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--orange),var(--rose) 40%,var(--wine))}
+.tl-year{font-family:var(--heavy);font-weight:800;font-size:1.5rem;color:var(--wine);padding:26px 0 14px 222px;position:relative;letter-spacing:-.02em}
+.tl-year:first-child{padding-top:0}
+.tl-year::before{content:"";position:absolute;left:184px;top:calc(50% + 6px);width:16px;height:16px;border-radius:50%;background:var(--wine);box-shadow:0 0 0 5px var(--paper)}
+.tl-year:first-child::before{top:calc(50% - 6px)}
+.tl-item{display:grid;grid-template-columns:170px 1fr;gap:52px;position:relative;margin-bottom:16px}
+.tl-item::before{content:"";position:absolute;left:186px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--wine)}
+.tl-item.now-item::before{background:var(--grad);border-color:#fff;box-shadow:0 0 0 3px rgba(240,101,58,.25)}
+.tl-when{text-align:right;padding-top:24px;display:grid;justify-items:end;gap:6px;align-content:start}
+.tl-when .when{font-weight:600;font-size:.86rem;color:var(--wine)}
+.tl-when .now{font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--grad);border-radius:999px;padding:4px 10px}
+.tl-card{background:#fff;border:1px solid #F0E3E2;border-radius:20px;padding:22px 26px;display:grid;gap:6px;transition:box-shadow .25s, transform .25s}
+.tl-card:hover{box-shadow:0 22px 40px -26px rgba(43,20,23,.5);transform:translateY(-2px)}
+.tl-card .tag{justify-self:start;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:5px 11px;background:rgba(240,101,58,.1);color:var(--orange);margin-bottom:4px}
+.tl-card h3{font-family:var(--heavy);font-weight:700;font-size:1.3rem;line-height:1.2;color:var(--ink);letter-spacing:-.015em}
+.tl-card .org{font-size:.9rem;color:var(--wine);font-weight:500}
+.tl-card .sum{font-size:.95rem;color:var(--muted)}
+.tl-card .detail{display:none}
+.tl-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.thumbs{display:flex;gap:6px}
+.thumbs button{border:0;padding:0;background:none;cursor:zoom-in;border-radius:10px;overflow:hidden;width:52px;height:52px}
+.thumbs img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.thumbs button:hover img{transform:scale(1.08)}
+.tl-btn{margin-left:auto;border:0;border-radius:999px;padding:10px 18px;font:600 .74rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;background:var(--blush);color:var(--wine);cursor:pointer;transition:background .2s,color .2s}
+.tl-btn:hover{background:var(--grad);color:#fff}
+@media (max-width:720px){
+  .timeline::before{left:7px}
+  .tl-year{padding-left:34px}
+  .tl-year::before{left:0}
+  .tl-item{grid-template-columns:1fr;gap:6px;padding-left:34px}
+  .tl-item::before{left:2px;top:4px}
+  .tl-when{text-align:left;justify-items:start;padding-top:0;grid-auto-flow:column;justify-content:start;align-items:center;gap:10px}
+}
+
+/* ---- v4: world map ---- */
+.travel{grid-template-columns:1.35fr .65fr;gap:22px}
+.map-card{background:#fff;border-radius:26px;padding:20px 20px 18px;box-shadow:0 30px 50px -36px rgba(43,20,23,.5);min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.84rem;color:var(--muted);margin-bottom:8px}
+.legend > span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.dot-perso{background:var(--wine)}.dot-pro{background:var(--orange)}
+.map-wrap{position:relative}
+
+.map.nomap{display:grid;place-items:center;text-align:center;color:var(--muted);background:var(--cream);border-radius:16px;padding:20px}
+.pulse{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:2px solid var(--wine);pointer-events:none;display:none}
+.pulse.pro{border-color:var(--orange)}
+@media (prefers-reduced-motion:no-preference){.pulse{animation:pulse 1.8s ease-out infinite}@keyframes pulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;grid-template-columns:none}
+.stamp{display:inline-flex;align-items:center;gap:7px;border:1px solid #EFE2E1;border-radius:999px;background:#fff;padding:6px 12px;font:500 .82rem/1 var(--body);color:var(--ink);cursor:pointer;box-shadow:none}
+.stamp:hover{transform:none;border-color:var(--rose)}
+.stamp i{width:9px;height:9px;border-radius:50%;background:var(--wine)}
+.stamp.pro i{background:var(--orange)}
+.stamp[aria-pressed="true"]{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.stamp.pro[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#fff}
+.stamp[aria-pressed="true"] i{background:#fff}
+.cam .kind{border-radius:999px;padding:4px 10px;font-size:.62rem;background:rgba(248,243,236,.14)}
+.cam .kind.pro{background:var(--grad);color:#fff}
+.cam-count{font-size:.75rem;color:#E3C9CC;margin-top:10px;letter-spacing:.04em}
+.screen{aspect-ratio:4/4.6}
+.jvm-tooltip{background:var(--wine)!important;color:var(--cream)!important;font-family:var(--body)!important;font-size:.82rem!important;border-radius:8px!important;padding:5px 10px!important;box-shadow:0 8px 20px -10px rgba(43,20,23,.6)!important}
+
+
+/* ---- v4: back to top ---- */
+.to-top{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(14px,2.5vw,28px);z-index:40;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--wine);color:var(--cream);display:grid;place-items:center;
+  box-shadow:0 0 0 4px var(--blush),0 14px 30px -12px rgba(76,17,25,.8);
+  opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .3s, transform .3s, background .25s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--grad)}
+.to-top svg{width:22px;height:22px;transition:transform .25s}
+.to-top:hover svg{transform:translateY(-3px)}
+.to-top::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1.5px dashed rgba(240,101,58,.55)}
+@media (max-width:520px){.to-top{width:48px;height:48px}}
+
+/* jsvectormap base (inlined) */
+.jvm-container{touch-action:none;position:relative;overflow:hidden}
+.jvm-tooltip{position:absolute;display:none;white-space:nowrap}.jvm-tooltip.active{display:block}.jvm-zoom-btn{display:none}
+
+/* ---- v5: own SVG world map ---- */
+.travel{display:block}
+.map-card{background:#fff;border-radius:28px;padding:22px 24px 20px;box-shadow:0 30px 50px -36px rgba(43,20,23,.5)}
+.map-bar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.legend{margin:0}
+.view-toggle{display:inline-flex;background:var(--blush);border-radius:999px;padding:4px}
+.view-toggle button{border:0;background:transparent;color:var(--wine);font:600 .76rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.view-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream)}
+.map-wrap{position:relative;background:linear-gradient(180deg,#FBF4F3,#F8ECEC);border-radius:20px;overflow:hidden}
+#map{display:block;width:100%;height:auto;aspect-ratio:2/1;max-height:600px}
+#map .land{fill:#E9CDD2;stroke:#FBF4F3}
+#map .land.visited{fill:#D49AA9}
+#map .mk{cursor:pointer}
+#map .mk .dot{stroke:#fff;transition:filter .2s}
+#map .mk.perso .dot{fill:var(--wine)}
+#map .mk.pro .dot{fill:var(--orange)}
+#map .mk:hover .dot,#map .mk.active .dot{filter:drop-shadow(0 0 3px rgba(240,101,58,.7))}
+#map .mk .ring{fill:none;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;pointer-events:none}
+#map .mk.perso .ring{stroke:var(--wine)}#map .mk.pro .ring{stroke:var(--orange)}
+#map .mk.active .ring{opacity:1}
+@media (prefers-reduced-motion:no-preference){#map .mk.active .ring{animation:ring 1.8s ease-out infinite}@keyframes ring{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.9);opacity:0}}}
+.map-tip{position:absolute;pointer-events:none;background:var(--wine);color:var(--cream);font-size:.82rem;font-weight:500;padding:6px 11px;border-radius:9px;white-space:nowrap;transform:translate(-50%,-140%);opacity:0;transition:opacity .15s;box-shadow:0 10px 20px -10px rgba(43,20,23,.6)}
+.map-tip.on{opacity:1}
+.map-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}
+.map-fallback[hidden]{display:none}
+.stamps{margin-top:14px}
+
+.cam-h{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;margin-top:22px;padding:20px;align-items:stretch}
+.cam-h .screen{aspect-ratio:4/3;height:auto;max-height:440px;min-height:0}
+.cam-side{display:flex;flex-direction:column;gap:12px;padding:8px 6px}
+.cam-side .cam-top{margin:0}
+.cam-side h3{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1}
+.cam-side p{color:#E3C9CC;font-size:.98rem}
+.cam-when{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-2)}
+.screen video{width:100%;height:100%;object-fit:cover;display:block}
+.vid-badge{position:absolute;left:12px;top:12px;background:rgba(43,20,23,.7);color:#fff;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.cam-side .cam-ctrl{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+.cam-side .cam-count{margin:0}
+@media (max-width:860px){.cam-h{grid-template-columns:1fr}.cam-h .screen{min-height:0;height:auto}#map{aspect-ratio:1.6/1}}
+
+
+/* ---- v6: CV, same layout as Alix's PDF, site colours ---- */
+.cvs{--cv-head:"Oswald", "Arial Narrow", sans-serif;--cv-body:"Open Sans", var(--body);
+  max-width:940px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 40px 70px -40px rgba(43,20,23,.5);
+  display:grid;grid-template-columns:250px 1fr;gap:26px;padding:26px;font-family:var(--cv-body);color:#3a3a3a}
+.cvs-side{display:flex;flex-direction:column;gap:22px;align-items:center}
+.cvs-card{background:var(--wine);color:var(--cream);border-radius:18px;padding:18px 18px 26px;width:100%}
+.cvs-photo{width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:50% 20%;border-radius:12px;margin-bottom:22px}
+.cvs-card h4{font-family:var(--cv-head);font-weight:600;font-size:1.06rem;letter-spacing:.01em;margin:22px 0 10px;color:#fff}
+.cvs-contact li{display:flex;align-items:center;gap:9px;font-size:.8rem;margin-bottom:7px;color:#F1DADC}
+.cvs-contact svg{width:15px;height:15px;flex:none;fill:none;stroke:var(--orange-2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cvs-list li{font-size:.8rem;font-weight:600;margin-bottom:6px;line-height:1.35}
+.cvs-list li small{display:block;font-weight:400;color:#E3C9CC}
+.cvs-list li b{display:block}
+.cvs-qr{width:120px;height:120px;image-rendering:pixelated}
+.cvs-main{min-width:0}
+.cvs-name{font-family:var(--cv-head);font-weight:600;font-size:1.6rem;color:var(--ink);line-height:1.1}
+.cvs-role{font-family:var(--cv-head);font-weight:500;font-size:1.25rem;color:var(--orange);margin:2px 0 4px}
+.cvs-intro{font-size:.84rem;text-align:justify;line-height:1.5}
+.cvs-h{font-family:var(--cv-head);font-weight:600;font-size:1.06rem;color:var(--ink);margin:22px 0 10px}
+.cvs-skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 18px}
+.cvs-skills > span{font-size:.84rem;font-weight:700;color:var(--wine);line-height:1.3}
+.cvs-tl{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.cvs-tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:#6a5a5c}
+.cvs-tl > li{position:relative;margin-bottom:12px}
+.cvs-tl > li::before{content:"";position:absolute;left:-22px;top:4px;width:9px;height:9px;border-radius:50%;background:#fff;border:1.5px solid #4a3a3c}
+.cvs-tl .t{display:block;font-size:.86rem;color:var(--wine);font-weight:700}
+.cvs-tl .o{font-size:.84rem;margin:3px 0 2px;color:var(--ink)}
+.cvs-tl .o b{font-weight:700}
+.cvs-tl .d{color:#9a8e8f;font-size:.8rem;margin-left:4px}
+.cvs-tl .d em{font-style:normal;color:#3a3a3a}
+.cvs-tl ul{list-style:none;padding:0;margin:0}
+.cvs-tl ul li{font-size:.8rem;color:#6d6466;line-height:1.45;padding-left:9px;position:relative}
+.cvs-tl ul li::before{content:"-";position:absolute;left:0}
+@media (max-width:760px){.cvs{grid-template-columns:1fr;padding:16px}.cvs-side{align-items:stretch}.cvs-qr{align-self:center}.cvs-skills{grid-template-columns:1fr 1fr}}
+
+
+/* ---- v7: CV as exact recoloured page ---- */
+.cv-sheet{max-width:860px;margin:0 auto;display:grid;gap:12px;justify-items:center}
+.cv-sheet button{border:0;padding:0;background:#fff;cursor:zoom-in;border-radius:8px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(43,20,23,.55);width:100%}
+.cv-sheet img{width:100%;height:auto;display:block}
+.cv-sheet figcaption{font-size:.85rem;color:var(--muted)}
+dialog.lb img[src*="cv-alix"]{max-height:none;width:min(92vw,1000px)}
+dialog.lb{max-height:94vh;overflow:auto}
+
+/* ---- v7: activities & commitments ---- */
+.eng-title{font-family:var(--heavy);font-weight:700;font-size:1.25rem;color:var(--wine);margin:8px 0 16px;letter-spacing:-.01em}
+.eng + .eng-title{margin-top:44px}
+.eng-3{grid-template-columns:repeat(3,1fr)}
+.eng-card.e-grad{background:var(--grad);color:#fff}
+.eng-card.e-wine{background:var(--wine);color:var(--cream)}
+.eng-card.e-wine .big{color:var(--orange-2)}
+.eng-card.e-blush{background:var(--blush);color:var(--wine)}
+.eng-card.e-sand{background:var(--sand);color:var(--ink)}
+.eng-card.e-sand .big{color:var(--wine)}
+.eng-card .big.word{font-size:2.3rem;line-height:1;letter-spacing:-.01em}
+.badge-cert{margin-top:auto;align-self:flex-start;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 11px;background:rgba(255,255,255,.18)}
+.eng-card.e-photo{position:relative;overflow:hidden;color:#fff;background:var(--wine-deep)}
+.eng-card.e-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.eng-card.e-photo > *:not(img){position:relative}
+.eng-card.e-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(76,17,25,.1),rgba(76,17,25,.75));pointer-events:none}
+.eng-card.e-photo > *:not(img){z-index:1}
+.eng-link{margin-top:auto;align-self:flex-start;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;background:var(--grad);color:#fff;border-radius:999px;padding:8px 14px}
+@media (max-width:980px){.eng-3{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.eng-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-bar">
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#presentation"><span lang="fr">Présentation</span><span lang="en">About</span></a>
+      <a href="#experiences"><span lang="fr">Expériences</span><span lang="en">Experience</span></a>
+      <a href="#voyages"><span lang="fr">Voyages</span><span lang="en">Travels</span></a>
+      <a href="#engagements"><span lang="fr">Activités</span><span lang="en">Activities</span></a>
+      <a href="#cv">CV</a>
+    </nav>
+    <a class="brand" href="#top">Alix <b>·</b> Bambou</a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" data-set-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-grad" href="#contact"><span lang="fr">Me contacter</span><span lang="en">Contact me</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="kicker"><span lang="fr">Bonjour, je suis Alix Bambou</span><span lang="en">Hello, I'm Alix Bambou</span></span>
+      <h1 lang="fr">Étudiante en commerce, le <span class="hl">relationnel<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="swg" x1="0" x2="1"><stop offset="0" stop-color="#F0653A"/><stop offset="1" stop-color="#F8952C"/></linearGradient></defs><path d="M4 13 C 70 4, 150 4, 296 10" stroke="url(#swg)" stroke-width="7" fill="none" stroke-linecap="round" opacity=".55"/></svg></span> au cœur de mon projet.</h1>
+      <h1 lang="en">Business student with <span class="hl">people<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="swg" x1="0" x2="1"><stop offset="0" stop-color="#F0653A"/><stop offset="1" stop-color="#F8952C"/></linearGradient></defs><path d="M4 13 C 70 4, 150 4, 296 10" stroke="url(#swg)" stroke-width="7" fill="none" stroke-linecap="round" opacity=".55"/></svg></span> at the heart of my work.</h1>
+      <p class="hero-lede" lang="fr">2ᵉ année de BUT Techniques de Commercialisation à Bordeaux, parcours Business International. <b>Je cherche un stage du 4 janvier au 27 février 2027.</b></p>
+      <p class="hero-lede" lang="en">Second-year BUT Business &amp; Marketing student in Bordeaux, International Business track. <b>I'm looking for an internship from January 4 to February 27, 2027.</b></p>
+      <div class="hero-cta">
+        <a class="btn btn-grad" href="#experiences"><span lang="fr">Voir mes expériences</span><span lang="en">See my experience</span> →</a>
+        <a class="btn btn-line" href="#cv"><span lang="fr">Mon CV</span><span lang="en">My résumé</span></a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/portrait.jpg" alt="Alix Bambou" width="1050" height="1400">
+    </div>
+  </div>
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 120 120">
+      <defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+      <g class="ring">
+        <text lang="fr" font-family="Outfit, sans-serif" font-size="8" font-weight="600" letter-spacing="1.3" fill="#fff"><textPath href="#circ">EN RECHERCHE DE STAGE • JANV.–FÉVR. 2027 •</textPath></text>
+        <text lang="en" font-family="Outfit, sans-serif" font-size="8.4" font-weight="600" letter-spacing="2.3" fill="#fff"><textPath href="#circ">OPEN TO INTERNSHIPS • JAN–FEB 2027 •</textPath></text>
+      </g>
+      <circle cx="60" cy="60" r="20" fill="url(#sg)"/>
+      <linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#F0653A"/><stop offset="1" stop-color="#F8952C"/></linearGradient>
+      <path d="M60 49v22M49 60h22M52.2 52.2l15.6 15.6M67.8 52.2L52.2 67.8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" aria-label="Chiffres clés">
+  <div class="wrap stats-grid">
+    <div class="stat s1"><b data-count="7">7</b><span lang="fr">expériences professionnelles</span><span lang="en">work experiences</span></div>
+    <div class="stat s2"><b data-count="3">3</b><span lang="fr">langues : français, anglais B2, espagnol B1</span><span lang="en">languages: French, English B2, Spanish B1</span></div>
+    <div class="stat s3"><b data-count="14">14</b><span lang="fr">pays et régions visités</span><span lang="en">countries and regions visited</span></div>
+    <div class="stat s4"><b data-count="12">12</b><span lang="fr">ans de danse contemporaine</span><span lang="en">years of contemporary dance</span></div>
+  </div>
+</section>
+
+<!-- 01 PRESENTATION : wine intro -->
+<section class="band on-wine" id="presentation">
+  <div class="wrap intro">
+    <figure class="pola"><img src="img/portrait.jpg" alt="Alix" loading="lazy" style="object-position:50% 15%"><figcaption>Alix</figcaption></figure>
+    <div class="center">
+      <span class="pill" style="background:rgba(248,149,44,.18);color:var(--orange-2)"><span lang="fr">01 · Présentation</span><span lang="en">01 · About me</span></span>
+      <h2 lang="fr">Curieuse, motivée <span class="script">et tournée vers les autres</span></h2>
+      <h2 lang="en">Curious, driven <span class="script">and people-oriented</span></h2>
+      <p lang="fr">Je construis un projet professionnel centré sur la communication, la vente et l'univers du commerce moderne. Ce que je cherche : un métier qui mêle relation client, créativité et international.</p>
+      <p lang="en">I'm building a career focused on communication, sales and the world of modern retail. What I'm after: a role that combines customer relations, creativity and an international outlook.</p>
+    </div>
+    <figure class="pola"><img src="img/amaya-vitrine.jpg" alt="Vitrine de bijoux" loading="lazy"><figcaption>Atelier d'Amaya</figcaption></figure>
+  </div>
+</section>
+
+<!-- PRESENTATION : tabs on blush -->
+<section class="band on-blush" style="padding-top:60px" aria-label="Présentation détaillée">
+  <div class="wrap tabs">
+    <div class="tablist" role="tablist" aria-label="Présentation">
+      <button type="button" class="t1" role="tab" id="tb1" aria-controls="pn1" aria-selected="true"><span lang="fr">Qui suis-je</span><span lang="en">Who I am</span></button>
+      <button type="button" class="t2" role="tab" id="tb2" aria-controls="pn2" aria-selected="false"><span lang="fr">Objectifs</span><span lang="en">Goals</span></button>
+      <button type="button" class="t3" role="tab" id="tb3" aria-controls="pn3" aria-selected="false">TC Self Test</button>
+      <button type="button" class="t4" role="tab" id="tb4" aria-controls="pn4" aria-selected="false"><span lang="fr">Super-coéquipier</span><span lang="en">Teammate</span></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="pn1" aria-labelledby="tb1">
+      <div class="panel-grid">
+        <figure class="pola" style="--rot:-3deg;--w:170px"><img src="img/foire-alix.jpg" alt="Alix à la Foire internationale de Bordeaux" loading="lazy" style="object-position:50% 45%"><figcaption>Bordeaux</figcaption></figure>
+        <div>
+          <h3 lang="fr">Mon <span class="script">identité</span></h3>
+          <h3 lang="en">My <span class="script">profile</span></h3>
+          <ul class="facts">
+            <li><span lang="fr">Formation</span><span lang="en">Studies</span><span lang="fr">BUT Tech de Co, 2ᵉ année, IUT de Bordeaux</span><span lang="en">BUT Business &amp; Marketing, 2nd year, IUT Bordeaux</span></li>
+            <li><span lang="fr">Parcours</span><span lang="en">Track</span><span>Business International</span></li>
+            <li><span lang="fr">Basée à</span><span lang="en">Based in</span><span>Bordeaux · <span lang="fr">Permis B</span><span lang="en">driving licence</span></span></li>
+            <li><span lang="fr">Recherche</span><span lang="en">Looking for</span><span lang="fr">Stage du 4 janvier au 27 février 2027</span><span lang="en">Internship, Jan 4 – Feb 27, 2027</span></li>
+          </ul>
+          <div class="two">
+            <div>
+              <span class="lbl"><span lang="fr">Langues</span><span lang="en">Languages</span></span>
+              <div class="bars">
+                <div class="bar-row"><span lang="fr">Français</span><span lang="en">French</span><div class="bar"><span style="width:100%"></span></div><span lang="fr">natif</span><span lang="en">native</span></div>
+                <div class="bar-row"><span lang="fr">Anglais</span><span lang="en">English</span><div class="bar"><span style="width:68%"></span></div><span>B2</span></div>
+                <div class="bar-row"><span lang="fr">Espagnol</span><span lang="en">Spanish</span><div class="bar"><span style="width:52%"></span></div><span>B1</span></div>
+              </div>
+            </div>
+            <div>
+              <span class="lbl"><span lang="fr">Centres d'intérêt</span><span lang="en">Interests</span></span>
+              <div class="chips"><span class="chip"><span lang="fr">Danse</span><span lang="en">Dance</span></span><span class="chip"><span lang="fr">Voyages</span><span lang="en">Travel</span></span><span class="chip"><span lang="fr">Mode</span><span lang="en">Fashion</span></span><span class="chip"><span lang="fr">Musique</span><span lang="en">Music</span></span></div>
+              <span class="lbl" style="margin-top:16px"><span lang="fr">Outils</span><span lang="en">Tools</span></span>
+              <div class="chips"><span class="chip">Canva</span><span class="chip"><span lang="fr">Outils IA</span><span lang="en">AI tools</span></span><span class="chip">Google apps</span><span class="chip">Microsoft Office</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="pn2" aria-labelledby="tb2" hidden>
+      <h3 lang="fr">Mes objectifs <span class="script">professionnels</span></h3>
+      <h3 lang="en">My career <span class="script">goals</span></h3>
+      <div class="two">
+        <div>
+          <span class="lbl"><span lang="fr">Ce qui pourrait me plaire</span><span lang="en">What appeals to me</span></span>
+          <ul class="ticks">
+            <li lang="fr">M'orienter vers un domaine qui mêle relation client et communication</li>
+            <li lang="en">A field combining customer relations and communication</li>
+            <li lang="fr">Explorer mon aptitude à travailler à l'international</li>
+            <li lang="en">Exploring my ability to work internationally</li>
+          </ul>
+          <span class="lbl" style="margin-top:18px"><span lang="fr">Ce qui me plaît moins</span><span lang="en">Less my thing</span></span>
+          <ul class="crosses">
+            <li lang="fr">Les métiers sans contact humain</li><li lang="en">Jobs with no human contact</li>
+            <li lang="fr">Les secteurs qui ne demandent pas de créativité</li><li lang="en">Sectors that leave no room for creativity</li>
+          </ul>
+        </div>
+        <div>
+          <span class="lbl"><span lang="fr">Compétences</span><span lang="en">Skills</span></span>
+          <div class="chips">
+            <span class="chip o"><span lang="fr">Communication interculturelle</span><span lang="en">Cross-cultural communication</span></span>
+            <span class="chip"><span lang="fr">Adaptabilité</span><span lang="en">Adaptability</span></span>
+            <span class="chip"><span lang="fr">Analyse des besoins &amp; conseil</span><span lang="en">Needs analysis &amp; advice</span></span>
+            <span class="chip o"><span lang="fr">Contact client</span><span lang="en">Customer contact</span></span>
+            <span class="chip"><span lang="fr">Stratégie</span><span lang="en">Strategy</span></span>
+            <span class="chip"><span lang="fr">Analyse</span><span lang="en">Analysis</span></span>
+            <span class="chip">Organisation</span>
+          </div>
+          <span class="lbl" style="margin-top:18px"><span lang="fr">Atouts</span><span lang="en">Strengths</span></span>
+          <div class="chips">
+            <span class="chip"><span lang="fr">Curieuse</span><span lang="en">Curious</span></span>
+            <span class="chip"><span lang="fr">Professionnelle</span><span lang="en">Professional</span></span>
+            <span class="chip"><span lang="fr">Assidue</span><span lang="en">Diligent</span></span>
+            <span class="chip"><span lang="fr">Proactive</span><span lang="en">Proactive</span></span>
+            <span class="chip"><span lang="fr">Sens des responsabilités</span><span lang="en">Responsible</span></span>
+            <span class="chip"><span lang="fr">Sens du relationnel</span><span lang="en">People person</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="pn3" aria-labelledby="tb3" hidden>
+      <h3>TC Self <span class="script">Test</span></h3>
+      <div class="seg" role="tablist" aria-label="TC Self Test">
+        <button type="button" role="tab" id="tab-forces" aria-selected="true" aria-controls="p-forces"><span lang="fr">Mes 3 points d'appui</span><span lang="en">My 3 strengths</span></button>
+        <button type="button" role="tab" id="tab-vigil" aria-selected="false" aria-controls="p-vigil"><span lang="fr">Mes 3 points de vigilance</span><span lang="en">My 3 watch-outs</span></button>
+      </div>
+      <div class="points" id="p-forces" role="tabpanel" aria-labelledby="tab-forces">
+        <div class="point"><b><span lang="fr">Relationnel / empathie</span><span lang="en">People skills / empathy</span></b>
+          <p lang="fr">Je crée facilement un lien avec les autres et je mets les gens à l'aise.</p><p lang="en">I connect easily with others and put people at ease.</p>
+          <p lang="fr">Illustration : centre aéré, communication avec les parents.</p><p lang="en">Example: youth centre work, talking with parents.</p></div>
+        <div class="point"><b>Organisation</b>
+          <p lang="fr">Je sais planifier, anticiper et gérer plusieurs tâches.</p><p lang="en">I plan ahead, anticipate and juggle several tasks.</p>
+          <p lang="fr">Illustration : préparation des activités, responsabilité d'un groupe d'enfants.</p><p lang="en">Example: preparing activities, being responsible for a group of children.</p></div>
+        <div class="point"><b><span lang="fr">Créativité / dynamisme</span><span lang="en">Creativity / energy</span></b>
+          <p lang="fr">J'aime proposer des idées, rendre les activités attractives et ajouter ma touche personnelle.</p><p lang="en">I like suggesting ideas, making activities engaging and adding my personal touch.</p>
+          <p lang="fr">Illustration : conception d'ateliers ludiques pendant l'année BAFA.</p><p lang="en">Example: designing fun workshops during my BAFA year.</p></div>
+      </div>
+      <div class="points" id="p-vigil" role="tabpanel" aria-labelledby="tab-vigil" hidden>
+        <div class="point"><b><span lang="fr">Stress / pression personnelle</span><span lang="en">Stress / self-imposed pressure</span></b>
+          <p lang="fr">Je veux souvent tout bien faire, ce qui peut me mettre la pression.</p><p lang="en">I often want everything to be perfect, which can put me under pressure.</p>
+          <p lang="fr">Compensation : préparation à l'avance, organisation, respiration.</p><p lang="en">How I handle it: preparing early, staying organised, breathing.</p></div>
+        <div class="point"><b><span lang="fr">Prise de parole en grand groupe</span><span lang="en">Speaking to large groups</span></b>
+          <p lang="fr">À l'aise en petit groupe, moins devant un large public.</p><p lang="en">Comfortable in small groups, less so in front of a large audience.</p>
+          <p lang="fr">Travail : participation active en TD, oraux du BUT.</p><p lang="en">How I work on it: active participation in class, BUT oral exams.</p></div>
+        <div class="point"><b><span lang="fr">Délégation</span><span lang="en">Delegating</span></b>
+          <p lang="fr">Tendance à vouloir tout gérer seule pour être sûre que ce soit bien fait.</p><p lang="en">I tend to handle everything myself to make sure it's done well.</p>
+          <p lang="fr">Compensation : apprendre à répartir les tâches en projet.</p><p lang="en">How I handle it: learning to share tasks in group projects.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="pn4" aria-labelledby="tb4" hidden>
+      <h3 lang="fr">Mon portrait <span class="script">super-coéquipier</span></h3>
+      <h3 lang="en">My super-<span class="script">teammate</span> portrait</h3>
+      <div class="quad">
+        <div><h4 lang="fr">J'aime</h4><h4 lang="en">I like</h4>
+          <ul><li lang="fr">Organiser mon temps</li><li lang="en">Organising my time</li><li lang="fr">Planifier mes tâches futures</li><li lang="en">Planning ahead</li><li lang="fr">Comprendre ce qui m'entoure</li><li lang="en">Understanding the world around me</li><li lang="fr">Être fière de moi</li><li lang="en">Being proud of my work</li></ul></div>
+        <div><h4 lang="fr">Je suis</h4><h4 lang="en">I am</h4>
+          <ul><li lang="fr">Travailleuse</li><li lang="en">Hard-working</li><li lang="fr">Ouverte d'esprit</li><li lang="en">Open-minded</li><li lang="fr">Créative</li><li lang="en">Creative</li></ul></div>
+        <div><h4 lang="fr">Je n'aime pas</h4><h4 lang="en">I don't like</h4>
+          <ul><li lang="fr">Décevoir</li><li lang="en">Letting people down</li><li lang="fr">Rendre un travail bâclé</li><li lang="en">Handing in sloppy work</li><li lang="fr">Avancer dans l'inconnu</li><li lang="en">Moving forward blind</li></ul></div>
+        <div><h4 lang="fr">Je veux apprendre</h4><h4 lang="en">I want to learn</h4>
+          <ul><li lang="fr">À développer mes compétences commerciales</li><li lang="en">To grow my sales skills</li><li lang="fr">À vivre en autonomie dans un autre pays</li><li lang="en">To live independently abroad</li><li lang="fr">À améliorer mes points de vigilance</li><li lang="en">To work on my watch-outs</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 EXPERIENCES -->
+<section class="band on-paper" id="experiences">
+  <div class="wrap">
+    <div class="head">
+      <span class="pill">02 · Portfolio</span>
+      <h2 lang="fr">Expériences <span class="script">professionnelles</span></h2>
+      <h2 lang="en">Work <span class="script">experience</span></h2>
+      <p lang="fr">De la plus récente à la plus ancienne. Cliquez sur « Voir le détail » pour découvrir le contexte, les missions et ce que j'en retiens.</p>
+      <p lang="en">From most recent to oldest. Click "See details" for the context, the missions and what I took away.</p>
+    </div>
+
+    <ol class="timeline">
+      <li class="tl-year">2026</li>
+
+      <li class="tl-item now-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Sept. 2026 → aujourd'hui</span><span lang="en">Sept. 2026 → present</span></span><span class="now"><span lang="fr">En cours</span><span lang="en">Ongoing</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Événementiel · accueil VIP</span><span lang="en">Events · VIP hospitality</span></span>
+          <h3><span lang="fr">Intérimaire, accueil VIP</span><span lang="en">Temp staff, VIP hospitality</span></h3>
+          <p class="org">City One · Bordeaux</p>
+          <p class="sum" lang="fr">Accueil d'une clientèle VIP en loges lors des matchs de rugby de l'UBB.</p>
+          <p class="sum" lang="en">Hosting VIP guests in hospitality boxes at UBB rugby matches.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail">
+            <div data-part="context"><p lang="fr">Missions d'intérim avec City One lors d'événements sportifs à Bordeaux, notamment les matchs de rugby de l'UBB.</p><p lang="en">Temp assignments with City One at sporting events in Bordeaux, including UBB rugby matches.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Accueil et accompagnement d'une clientèle VIP en loges</li><li lang="en">Welcoming and looking after VIP guests in hospitality boxes</li>
+              <li lang="fr">Valorisation de l'image de marque des événements par un accueil professionnel et personnalisé</li><li lang="en">Enhancing the events' brand image through professional, personal service</li>
+              <li lang="fr">Gestion des demandes et orientation des visiteurs</li><li lang="en">Handling requests and guiding visitors</li>
+              <li lang="fr">Contribution à la satisfaction et à la fidélisation du public</li><li lang="en">Contributing to guest satisfaction and loyalty</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Sens du relationnel et qualité de service auprès d'une clientèle variée, réactivité, adaptabilité.</p><p lang="en">People skills and service quality with a varied clientele, responsiveness, adaptability.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-item now-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Juin 2026 → aujourd'hui</span><span lang="en">June 2026 → present</span></span><span class="now"><span lang="fr">En cours</span><span lang="en">Ongoing</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Commerce · partenariats</span><span lang="en">Sales · partnerships</span></span>
+          <h3><span lang="fr">Vice-présidente</span><span lang="en">Vice-President</span></h3>
+          <p class="org"><span lang="fr">Association Alticiades Bordeaux</span><span lang="en">Alticiades Bordeaux association</span></p>
+          <p class="sum" lang="fr">Représenter Bordeaux à la compétition nationale des BUT TC : stand régional, négociation, épreuves sportives et création d'un OGNI.</p>
+          <p class="sum" lang="en">Representing Bordeaux at the national BUT TC competition: regional stand, negotiation, sports challenges and building an "OGNI".</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail" data-photos="img/trips/img-alticiades-2.jpg|Notre stand aux Alticiades|Our stand at the Alticiades;img/trips/img-alticiades-5.jpg|Notre OGNI (Objet Glissant Non Identifié)|Our OGNI (Unidentified Sliding Object);img/trips/img-alticiades-3.jpg|Produits de la région sur le stand|Regional products on the stand;img/trips/img-alticiades-4.jpg|Les vins de la région|Wines from the region;img/trips/img-alticiades-1.jpg|Le logo Alticiades Bordeaux|The Alticiades Bordeaux logo">
+            <div data-part="context"><p lang="fr">Les Alticiades sont une compétition nationale qui réunit les étudiants en BUT Techniques de Commercialisation autour de défis commerciaux, sportifs et créatifs. Notre objectif : représenter Bordeaux avec un stand qui met en valeur notre région, des épreuves de négociation et sportives, et la création d'un Objet Glissant Non Identifié (OGNI), le tout autour d'un thème choisi à l'avance.</p><p lang="en">The Alticiades are a national competition bringing together BUT Business &amp; Marketing students around sales, sports and creative challenges. Our goal: represent Bordeaux with a stand showcasing our region, negotiation and sports events, and building an Unidentified Sliding Object (OGNI), all around a theme chosen in advance.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Coordination de l'équipe et suivi de nos projets</li><li lang="en">Coordinating the team and following up on our projects</li>
+              <li lang="fr">Organisation des événements</li><li lang="en">Organising events</li>
+              <li lang="fr">Prospection d'entreprises et recherche de partenaires pour obtenir des dons financiers et des dotations en produits</li><li lang="en">Prospecting companies and finding partners for financial donations and product sponsorship</li>
+              <li lang="fr">Négociation et développement de partenariats</li><li lang="en">Negotiating and developing partnerships</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Management, communication, négociation et gestion de projet, avec plus de sens des responsabilités, de créativité et d'esprit d'équipe. Avant tout une aventure collective, riche en défis et en rencontres.</p><p lang="en">Management, communication, negotiation and project management, plus a stronger sense of responsibility, creativity and teamwork. Above all a team adventure, full of challenges and encounters.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Juin 2026</span><span lang="en">June 2026</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">International · stage</span><span lang="en">International · internship</span></span>
+          <h3><span lang="fr">Stagiaire à l'international</span><span lang="en">International intern</span></h3>
+          <p class="org">Spanish Institute for Global Education · <span lang="fr">Séville</span><span lang="en">Seville</span></p>
+          <p class="sum" lang="fr">Coordination des activités d'étudiants internationaux dans un environnement multiculturel.</p>
+          <p class="sum" lang="en">Coordinating activities for international students in a multicultural setting.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail" data-photos="img/sige-groupe.jpg|SIGE|SIGE;img/sige-bureau.jpg|L'accueil du SIGE|SIGE reception;img/seville-facade.jpg|Séville|Seville">
+            <div data-part="context"><p lang="fr">Stage à Séville au Spanish Institute for Global Education, dont la devise est « Quien tiene la lengua tiene el mundo ».</p><p lang="en">Internship in Seville at the Spanish Institute for Global Education, whose motto is "Quien tiene la lengua tiene el mundo" (who has the language has the world).</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Coordination et organisation des activités d'étudiants internationaux</li><li lang="en">Coordinating and organising activities for international students</li>
+              <li lang="fr">Planification et suivi des activités dans un environnement multiculturel</li><li lang="en">Planning and following up activities in a multicultural environment</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Compétences relationnelles, organisation, adaptabilité, pratique de l'espagnol au quotidien.</p><p lang="en">People skills, organisation, adaptability, everyday Spanish.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Mai 2026</span><span lang="en">May 2026</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Événementiel · stand</span><span lang="en">Events · stand</span></span>
+          <h3><span lang="fr">Gestion d'un stand à la Foire internationale de Bordeaux</span><span lang="en">Running a stand at the Bordeaux International Fair</span></h3>
+          <p class="org">BEAM · Bordeaux</p>
+          <p class="sum" lang="fr">Accueil à l'Espace Kids « La boîte à musique » et à l'Espace Ateliers.</p>
+          <p class="sum" lang="en">Front desk at the "La boîte à musique" Kids Area and the Workshop Area.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail" data-photos="img/foire-alix.jpg|À l'accueil de l'Espace Kids|At the Kids Area desk;img/foire-kids.jpg|La boîte à musique|La boîte à musique;img/foire-ateliers.jpg|L'Espace Ateliers|The Workshop Area">
+            <div data-part="context"><p lang="fr">Gestion d'un stand pour l'entreprise BEAM à la Foire internationale de Bordeaux.</p><p lang="en">Running a stand for BEAM at the Bordeaux International Fair.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Accompagnement du public et gestion des flux de visiteurs</li><li lang="en">Assisting the public and managing visitor flow</li>
+              <li lang="fr">Accueil à l'Espace Kids « La boîte à musique » et à l'Espace Ateliers</li><li lang="en">Front desk at the "La boîte à musique" Kids Area and the Workshop Area</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Sens du service, relationnel, adaptabilité.</p><p lang="en">Service sense, people skills, adaptability.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Janv. 2026</span><span lang="en">Jan. 2026</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Commerce · retail</span><span lang="en">Sales · retail</span></span>
+          <h3><span lang="fr">Stagiaire, stage découverte</span><span lang="en">Intern, discovery internship</span></h3>
+          <p class="org">L'Atelier d'Amaya · Bordeaux</p>
+          <p class="sum" lang="fr">Mise en valeur des produits et agencement d'une boutique de bijoux.</p>
+          <p class="sum" lang="en">Product display and merchandising in a jewellery boutique.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail" data-photos="img/amaya-vitrine.jpg|Collection argent 925|Sterling silver collection;img/amaya-presentoir.jpg|Présentoir en boutique|In-store display;img/amaya-atelier.jpg|À l'atelier|In the workshop;img/amaya-boutique.jpg|L'atelier-boutique|The workshop-boutique">
+            <div data-part="context"><p lang="fr">L'Atelier d'Amaya est une marque de bijoux personnalisés fondée à Bordeaux, que j'apprécie depuis longtemps. J'ai obtenu ce stage par candidature spontanée : CV et lettre personnalisés, mail, puis déplacement en boutique.</p><p lang="en">L'Atelier d'Amaya is a Bordeaux-born personalised jewellery brand I've loved for years. I got this internship through an unsolicited application: tailored CV and letter, an email, then a visit to the shop.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Découverte des techniques de mise en valeur des produits et d'agencement en boutique</li><li lang="en">Learning product display and in-store merchandising techniques</li>
+              <li lang="fr">Participation à la présentation des collections et à l'attractivité de l'espace de vente</li><li lang="en">Helping present the collections and make the shop floor attractive</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Sens esthétique, compréhension des attentes clients, et la preuve qu'une démarche directe peut fonctionner.</p><p lang="en">An eye for aesthetics, understanding customer expectations, and proof that a direct approach can work.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-year">2023</li>
+
+      <li class="tl-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Sept. 2023 → juin 2024</span><span lang="en">Sept. 2023 → June 2024</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Animation · BAFA</span><span lang="en">Youth work · BAFA</span></span>
+          <h3><span lang="fr">Animatrice auprès des jeunes</span><span lang="en">Youth activity leader</span></h3>
+          <p class="org"><span lang="fr">Les JSA, maison de quartier · Bordeaux</span><span lang="en">Les JSA community centre · Bordeaux</span></p>
+          <p class="sum" lang="fr">Création de grands jeux, encadrement de groupes et lien avec les parents.</p>
+          <p class="sum" lang="en">Designing large games, leading groups and liaising with parents.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail">
+            <div data-part="context"><p lang="fr">Animatrice BAFA aux JSA, maison de quartier à Bordeaux, pendant un an.</p><p lang="en">BAFA-certified activity leader at Les JSA, a community centre in Bordeaux, for a year.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Création et organisation de grands jeux et d'activités ludiques</li><li lang="en">Designing and running large games and fun activities</li>
+              <li lang="fr">Animation et encadrement des jeunes dans un environnement sécurisé</li><li lang="en">Leading and supervising young people in a safe environment</li>
+              <li lang="fr">Communication avec les parents</li><li lang="en">Communicating with parents</li>
+              <li lang="fr">Travail en équipe et participation à la dynamique de groupe</li><li lang="en">Teamwork and contributing to group dynamics</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Autonomie, responsabilité, créativité, gestion du stress.</p><p lang="en">Independence, responsibility, creativity, stress management.</p></div>
+          </div>
+        </article>
+      </li>
+
+      <li class="tl-item now-item">
+        <div class="tl-when"><span class="when"><span lang="fr">Sept. 2023 → aujourd'hui</span><span lang="en">Sept. 2023 → present</span></span><span class="now"><span lang="fr">En cours</span><span lang="en">Ongoing</span></span></div>
+        <article class="tl-card">
+          <span class="tag"><span lang="fr">Enfance</span><span lang="en">Childcare</span></span>
+          <h3><span lang="fr">Baby-sitting régulier et périscolaire</span><span lang="en">Regular &amp; after-school babysitting</span></h3>
+          <p class="org"><span lang="fr">Particuliers · Bordeaux</span><span lang="en">Private families · Bordeaux</span></p>
+          <p class="sum" lang="fr">Garde d'enfants régulière et accompagnement après l'école.</p>
+          <p class="sum" lang="en">Regular childcare and after-school support.</p>
+          <div class="tl-foot"><div class="thumbs"></div><button type="button" class="tl-btn" data-open><span lang="fr">Voir le détail</span><span lang="en">See details</span> →</button></div>
+          <div class="detail">
+            <div data-part="context"><p lang="fr">Baby-sitting auprès de familles bordelaises depuis 2023.</p><p lang="en">Babysitting for families in Bordeaux since 2023.</p></div>
+            <ul data-part="missions">
+              <li lang="fr">Garde régulière d'enfants et accompagnement périscolaire</li><li lang="en">Regular childcare and after-school support</li>
+            </ul>
+            <div data-part="gains"><p lang="fr">Relation de confiance avec les familles, ponctualité, sens des responsabilités.</p><p lang="en">Trust with families, punctuality, responsibility.</p></div>
+          </div>
+        </article>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 03 VOYAGES -->
+<section class="band on-blush" id="voyages">
+  <div class="wrap">
+    <div class="head">
+      <span class="pill"><span lang="fr">03 · Voyages &amp; mobilité</span><span lang="en">03 · Travel &amp; mobility</span></span>
+      <h2 lang="fr">Là où j'ai posé <span class="script">mes valises</span></h2>
+      <h2 lang="en">Where I've <span class="script">unpacked</span></h2>
+      <p lang="fr">Voyager fait partie de ma vie depuis mon enfance. Chaque destination m'a fait découvrir de nouvelles cultures, des personnes et des façons de vivre différentes. Au-delà des paysages, ce sont surtout les rencontres et les traditions qui rendent ces voyages si enrichissants à mes yeux.</p>
+      <p lang="en">Travel has been part of my life since childhood. Each destination introduced me to new cultures, people and ways of life. Beyond the scenery, it's the encounters and traditions that make these trips so rewarding to me.</p>
+      <p class="hint" lang="fr">Cliquez sur un point de la carte pour découvrir les photos et le récit de chaque destination.</p>
+      <p class="hint" lang="en">Click a dot on the map to see the photos and story of each destination.</p>
+    </div>
+
+    <div class="map-card">
+      <div class="map-bar">
+        <div class="legend">
+          <span><i class="dot-perso"></i><span lang="fr">Voyage personnel</span><span lang="en">Personal trip</span></span>
+          <span><i class="dot-pro"></i><span lang="fr">Expérience professionnelle à l'étranger</span><span lang="en">Professional experience abroad</span></span>
+        </div>
+        <div class="view-toggle" role="group" aria-label="Vue de la carte">
+          <button type="button" data-view="world" aria-pressed="true"><span lang="fr">Monde</span><span lang="en">World</span></button>
+          <button type="button" data-view="europe" aria-pressed="false">Europe</button>
+        </div>
+      </div>
+      <div class="map-wrap" id="map-wrap">
+        <svg id="map" class="map" role="img" aria-label="Carte des destinations" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="map-tip" id="map-tip" aria-hidden="true"></div>
+        <p class="map-fallback" id="map-fallback" hidden><span lang="fr">La carte n'a pas pu se charger. Utilisez la liste des destinations ci-dessous.</span><span lang="en">The map could not load. Use the list of destinations below.</span></p>
+      </div>
+      <div class="stamps" id="stamps" role="group" aria-label="Destinations"></div>
+    </div>
+
+    <div class="cam cam-h" aria-live="polite">
+      <div class="screen" id="screen"></div>
+      <div class="cam-side">
+        <div class="cam-top"><span class="rec" id="cam-place"></span><span class="kind" id="cam-kind"></span></div>
+        <h3 id="cam-title"></h3>
+        <span class="cam-when" id="cam-when"></span>
+        <p id="cam-text"></p>
+        <div class="cam-ctrl">
+          <div class="cam-count" id="cam-count"></div>
+          <div class="pad">
+            <button type="button" id="prev" aria-label="Photo précédente">◀</button>
+            <button type="button" id="next" aria-label="Photo suivante">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ENGAGEMENTS -->
+<section class="band on-cream" id="engagements">
+  <div class="wrap">
+    <div class="head">
+      <span class="pill"><span lang="fr">04 · Activités &amp; engagements</span><span lang="en">04 · Activities &amp; commitments</span></span>
+      <h2 lang="fr">Ce qui me fait <span class="script">avancer</span></h2>
+      <h2 lang="en">What keeps me <span class="script">going</span></h2>
+      <p lang="fr">Des pratiques suivies depuis des années, et ce qu'elles m'apportent au travail.</p>
+      <p lang="en">Long-standing practices, and what they bring to my work.</p>
+    </div>
+    <h3 class="eng-title"><span lang="fr">Engagements &amp; formations</span><span lang="en">Commitments &amp; training</span></h3>
+    <div class="eng eng-3">
+      <div class="eng-card e-wine">
+        <span class="lbl"><span lang="fr">Vie étudiante · IUT Bordeaux Bastide</span><span lang="en">Student life · IUT Bordeaux Bastide</span></span>
+        <div class="big word"><span lang="fr">Déléguée</span><span lang="en">Delegate</span></div>
+        <p lang="fr">Déléguée et représentante de mon groupe au département Techniques de Commercialisation : je fais le lien entre les étudiants et l'équipe pédagogique, je transmets les remarques et les besoins de mes camarades et je participe aux échanges pour améliorer notre quotidien.</p>
+        <p lang="en">Delegate and representative of my class in the Business &amp; Marketing department: I link students and teaching staff, pass on my classmates' feedback and needs, and take part in discussions to improve our daily life.</p>
+        <span class="badge-cert"><span lang="fr">Engagement certifié</span><span lang="en">Certified commitment</span></span>
+      </div>
+      <div class="eng-card e-grad">
+        <span class="lbl"><span lang="fr">Formation · santé mentale</span><span lang="en">Training · mental health</span></span>
+        <div class="big word">PSSM</div>
+        <p lang="fr">Premiers Secours en Santé Mentale : savoir reconnaître les signes de troubles psychiques ou de crise, adopter une écoute bienveillante et orienter vers les bons professionnels, sans jugement et sans se substituer à eux.</p>
+        <p lang="en">Mental Health First Aid: recognising signs of mental health problems or crisis, listening without judgement and guiding people to the right professionals, without taking their place.</p>
+        <span class="badge-cert"><span lang="fr">Écoute active · empathie</span><span lang="en">Active listening · empathy</span></span>
+      </div>
+      <div class="eng-card e-sand">
+        <span class="lbl"><span lang="fr">Brevet · FEMFA 2023</span><span lang="en">Certificate · FEMFA 2023</span></span>
+        <div class="big word">BAFA</div>
+        <p lang="fr">Obtenu en 2023 à Bordeaux. Il m'a ouvert la porte de l'animation aux JSA.</p>
+        <p lang="en">Earned in 2023 in Bordeaux (French youth-leader certificate). It led to my role at Les JSA.</p>
+      </div>
+    </div>
+
+    <h3 class="eng-title"><span lang="fr">Activités</span><span lang="en">Activities</span></h3>
+    <div class="eng">
+      <div class="eng-card e-grad">
+        <span class="lbl"><span lang="fr">Danse contemporaine</span><span lang="en">Contemporary dance</span></span>
+        <div class="big">12<small><span lang="fr">ans</span><span lang="en">years</span></small></div>
+        <p lang="fr">Rigueur, persévérance et expression de soi.</p><p lang="en">Discipline, perseverance and self-expression.</p>
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="eng-card e-wine">
+        <span class="lbl"><span lang="fr">Théâtre &amp; improvisation</span><span lang="en">Theatre &amp; improv</span></span>
+        <div class="big">5<small><span lang="fr">ans</span><span lang="en">years</span></small></div>
+        <p lang="fr">Aisance à l'oral, écoute et réactivité face aux clients.</p><p lang="en">Speaking confidence, listening and quick thinking with customers.</p>
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+      </div>
+      <div class="eng-card e-blush">
+        <span class="lbl">Piano</span>
+        <div class="big">3<small><span lang="fr">ans</span><span lang="en">years</span></small></div>
+        <p lang="fr">Concentration, patience et régularité.</p><p lang="en">Focus, patience and consistency.</p>
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+      </div>
+      <div class="eng-card e-photo">
+        <img src="img/trips/img-randonnee-5.jpg" alt="" loading="lazy">
+        <span class="lbl"><span lang="fr">Randonnée</span><span lang="en">Hiking</span></span>
+        <div class="big word"><span lang="fr">Depuis petite</span><span lang="en">Since childhood</span></div>
+        <p lang="fr">Lacs, crêtes et levers de soleil dans les Pyrénées.</p><p lang="en">Lakes, ridges and sunrises in the Pyrenees.</p>
+        <a class="eng-link" href="#voyages" data-trip="Pyrénées"><span lang="fr">Voir les photos</span><span lang="en">See the photos</span> →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CV -->
+<section class="band on-paper" id="cv">
+  <div class="wrap">
+    <div class="head">
+      <span class="pill">05 · CV</span>
+      <h2 lang="fr">Mon <span class="script">parcours</span></h2>
+      <h2 lang="en">My <span class="script">résumé</span></h2>
+    </div>
+    <div class="cv-bar">
+      <button class="btn btn-grad" type="button" id="dl-cv" hidden>↓ <span lang="fr">Télécharger mon CV</span><span lang="en">Download my résumé</span></button>
+      <a class="btn btn-line" style="color:var(--wine)" href="CV_Alix_Bambou.pdf" target="_blank" rel="noopener"><span lang="fr">Ouvrir le PDF</span><span lang="en">Open the PDF</span></a>
+    </div>
+    <p class="cv-msg" id="dl-msg"></p>
+
+    <figure class="cv-sheet">
+      <button type="button" data-lb="img/cv-alix.jpg" data-cap-fr="CV d'Alix Bambou" data-cap-en="Alix Bambou's résumé (in French)" aria-label="Agrandir le CV">
+        <img src="img/cv-alix.jpg" alt="CV d'Alix Bambou : étudiante en 2e année de BUT Tech de Co, expériences, compétences et formations" width="1818" height="2573" loading="lazy">
+      </button>
+      <figcaption><span lang="fr">Cliquez sur le CV pour l'agrandir.</span><span lang="en">Résumé in French. Click to enlarge.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="band on-blush" id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <span class="pill" style="background:rgba(248,149,44,.18);color:var(--orange-2)"><span lang="fr">Travaillons ensemble</span><span lang="en">Let's work together</span></span>
+      <h2 lang="fr">Un stage à me proposer ? <span class="script">Parlons-en</span></h2>
+      <h2 lang="en">Got an internship for me? <span class="script">Let's talk</span></h2>
+      <p lang="fr">Disponible du 4 janvier au 27 février 2027, en France ou à l'international.</p>
+      <p lang="en">Available January 4 to February 27, 2027, in France or abroad.</p>
+      <div class="c-grid">
+        <div class="c-card"><span class="lbl" style="margin:0">Email</span><b>bamboualix@gmail.com</b><button class="mini" type="button" data-copy="bamboualix@gmail.com"><span lang="fr">Copier</span><span lang="en">Copy</span></button></div>
+        <div class="c-card"><span class="lbl" style="margin:0"><span lang="fr">Téléphone</span><span lang="en">Phone</span></span><b>07 66 09 92 01</b><button class="mini" type="button" data-copy="0766099201"><span lang="fr">Copier</span><span lang="en">Copy</span></button></div>
+        <a class="c-card" href="https://www.linkedin.com/in/alixbambou/" target="_blank" rel="noopener"><span class="lbl" style="margin:0">LinkedIn</span><b>linkedin.com/in/alixbambou</b><span class="mini"><span lang="fr">Ouvrir ↗</span><span lang="en">Open ↗</span></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="on-blush">
+  <div class="wrap"><span>Alix Bambou · ePortfolio 2026</span><span>Bordeaux · FR / EN</span></div>
+</footer>
+
+<button type="button" class="to-top" id="to-top" aria-label="Revenir en haut de la page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<dialog class="case" id="case" aria-labelledby="case-title">
+  <div class="case-head">
+    <span class="pill" id="case-tag" style="background:rgba(248,149,44,.18);color:var(--orange-2)"></span>
+    <h3 id="case-title"></h3>
+    <div class="org" id="case-org"></div>
+    <button class="case-close" type="button" id="case-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="case-body">
+    <div class="case-steps">
+      <div class="step"><span class="n">01</span><h4><span lang="fr">Contexte</span><span lang="en">Context</span></h4><div id="case-context"></div></div>
+      <div class="step"><span class="n">02</span><h4><span lang="fr">Missions</span><span lang="en">Missions</span></h4><ul class="ticks" id="case-missions"></ul></div>
+      <div class="step"><span class="n">03</span><h4><span lang="fr">Ce que j'en retiens</span><span lang="en">What I gained</span></h4><div id="case-gains"></div></div>
+    </div>
+    <div id="case-photos"></div>
+  </div>
+</dialog>
+
+<dialog class="lb" id="lb">
+  <img id="lb-img" alt="">
+  <div class="lb-bar"><span id="lb-cap"></span><button type="button" id="lb-close"><span lang="fr">Fermer</span><span lang="en">Close</span> ✕</button></div>
+</dialog>
+
+<script>window.jsVectorMap={addMap:function(n,d){window.__worldMap=d;}};</script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/maps/world.js"></script>
+<script>
+(function(){
+  const root = document.documentElement;
+  let lang = 'fr';
+  try { const s = localStorage.getItem('alix-lang'); if (s === 'en' || s === 'fr') lang = s; } catch(e){}
+  const $ = id => document.getElementById(id);
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- travels ---------- */
+  const P = (src, fr, en, extra) => Object.assign({src:'img/trips/'+src, fr, en}, extra||{});
+  const V = (name, fr, en) => ({src:'img/trips/'+name+'.mp4', poster:'img/trips/'+name+'-poster.jpg', fr, en, video:true});
+  const TRIPS = [
+    { fr:'Séville', en:'Seville', when:{fr:'Juin 2026', en:'June 2026'}, kind:'pro', coords:[37.39,-5.98], cam:'SEVILLA', date:"06 '26",
+      text:{fr:'Stage international au Spanish Institute for Global Education. Vivre au quotidien en espagnol, entre patios et palmiers, au contact d\'étudiants du monde entier.',
+            en:'International internship at the Spanish Institute for Global Education. Living in Spanish every day, among patios and palm trees, alongside students from all over the world.'},
+      photos:[P('../seville-patio.jpg','Un patio sévillan','A Sevillian courtyard'),P('../seville-facade.jpg','Architecture de Séville','Seville architecture'),P('../sige-bureau.jpg','Le SIGE','SIGE'),P('../sige-groupe.jpg','Fin de programme au SIGE','End of programme at SIGE')]},
+    { fr:'New York', en:'New York', when:{fr:'Juillet 2023', en:'July 2023'}, kind:'perso', coords:[40.71,-74.0], cam:'NEW YORK', date:"07 '23",
+      text:{fr:'Trois semaines en séjour linguistique, sans ma famille, au sein d\'un groupe que je rejoignais pour cette aventure. J\'y ai renforcé mon anglais, gagné en autonomie, fait de nouvelles rencontres et découvert le quotidien d\'une métropole internationale.',
+            en:'Three weeks on a language-immersion trip, without my family, in a group I joined for the adventure. I strengthened my English, grew more independent, met new people and discovered daily life in a global city.'},
+      photos:[P('img-new-york-1.jpg','Le pont de Brooklyn','Brooklyn Bridge'),P('img-new-york-2.jpg','La statue de la Liberté','The Statue of Liberty'),P('img-new-york-3.jpg','Manhattan','Manhattan'),P('img-new-york-4.jpg','New York','New York')]},
+    { fr:'Corse', en:'Corsica', when:{fr:'2021, 2022 & 2023', en:'2021, 2022 & 2023'}, kind:'perso', coords:[42.15,9.1], cam:'CORSICA', date:"'23",
+      text:{fr:'Trois années consécutives à découvrir la Corse en famille. Entre plages sauvages, montagnes et villages typiques, ces séjours m\'ont fait apprécier la beauté naturelle de l\'île et son identité culturelle.',
+            en:'Three years in a row exploring Corsica with my family. Wild beaches, mountains and traditional villages taught me to love the island\'s natural beauty and cultural identity.'},
+      photos:[P('img-corse-1.jpg','Eaux turquoise','Turquoise water'),P('img-corse-2.jpg','Côte corse','Corsican coast'),P('img-corse-3.jpg','La montagne corse','Corsican mountains')]},
+    { fr:'Marrakech', en:'Marrakesh', when:{fr:'2022', en:'2022'}, kind:'perso', coords:[31.63,-7.99], cam:'MARRAKECH', date:"'22",
+      text:{fr:'Un voyage avec ma mère et mon frère, placé sous le signe de la découverte culturelle : rencontres avec les habitants, fabrication traditionnelle de l\'huile d\'argan et randonnées, pour découvrir le Maroc au-delà de l\'effervescence de Marrakech.',
+            en:'A trip with my mother and brother focused on culture: meeting local people, seeing traditional argan oil being made and hiking, to discover Morocco beyond the buzz of Marrakesh.'},
+      photos:[P('img-marrakech-1.jpg','Architecture marocaine','Moroccan architecture'),P('img-marrakech-2.jpg','Les souks','The souks'),V('video-marrakech-5','Marrakech en vidéo','Marrakesh on video'),P('img-marrakech-3.jpg','Cascade en randonnée','Waterfall on a hike'),P('img-marrakech-4.jpg','Le jardin Majorelle','Majorelle Garden')]},
+    { fr:'Belgique', en:'Belgium', when:{fr:'2022', en:'2022'}, kind:'perso', coords:[50.85,4.35], cam:'BELGIQUE', date:"'22",
+      text:{fr:'J\'ai rejoint mon frère qui y effectuait une mobilité internationale. Ce séjour m\'a permis de partager une partie de son expérience à l\'étranger tout en découvrant un nouveau pays, sa culture et son mode de vie.',
+            en:'I joined my brother during his study exchange there. I got to share part of his experience abroad while discovering a new country, its culture and way of life.'}, photos:[] },
+    { fr:'Grèce', en:'Greece', when:{fr:'2021', en:'2021'}, kind:'perso', coords:[36.9,25.4], cam:'CYCLADES', date:"'21",
+      text:{fr:'Un voyage avec ma mère à la découverte des îles des Cyclades. Entre villages blancs, petites ruelles, eaux turquoise et gastronomie locale, j\'ai découvert le charme des îles grecques et leur art de vivre méditerranéen.',
+            en:'A trip with my mother around the Cyclades. White villages, narrow lanes, turquoise water and local food: I fell for the charm of the Greek islands and their Mediterranean way of life.'},
+      photos:[P('img-grece-santorin.jpg','Coucher de soleil à Santorin','Sunset in Santorini'),V('video-grece-mykonos-2','Mykonos en vidéo','Mykonos on video')]},
+    { fr:'Londres', en:'London', when:{fr:'2019', en:'2019'}, kind:'perso', coords:[51.51,-0.13], cam:'LONDON', date:"'19",
+      text:{fr:'Deux visites en famille. Au-delà des monuments emblématiques, j\'ai particulièrement aimé les quartiers comme Camden, leur atmosphère alternative, leur créativité et leur diversité culturelle.',
+            en:'Two visits with my family. Beyond the famous landmarks, I especially loved neighbourhoods like Camden, with their alternative vibe, creativity and cultural diversity.'}, photos:[] },
+    { fr:'Guadeloupe', en:'Guadeloupe', when:{fr:'2019', en:'2019'}, kind:'perso', coords:[16.25,-61.55], cam:'GUADELOUPE', date:"'19",
+      text:{fr:'Des paysages paradisiaques, mais surtout une grande richesse culturelle. Grâce à une connaissance vivant sur place, j\'ai exploré l\'île au-delà des circuits touristiques et découvert certaines de ses traditions locales.',
+            en:'Stunning landscapes, but above all a rich culture. Thanks to someone I know who lives there, I explored the island off the tourist track and discovered some of its local traditions.'}, photos:[] },
+    { fr:'Île Maurice', en:'Mauritius', when:{fr:'2017 & 2019', en:'2017 & 2019'}, kind:'perso', coords:[-20.25,57.55], cam:'MAURICE', date:"'19",
+      text:{fr:'Deux voyages sur une île marquante par sa diversité culturelle, l\'accueil chaleureux de ses habitants et ses paysages : le Morne Brabant, les marchés locaux et les fonds marins aux poissons multicolores.',
+            en:'Two trips to an island that stood out for its cultural diversity, warm welcome and landscapes: Le Morne Brabant, local markets and reefs full of colourful fish.'}, photos:[] },
+    { fr:'Écosse', en:'Scotland', when:{fr:'2016', en:'2016'}, kind:'perso', coords:[57.3,-6.2], cam:'ISLE OF SKYE', date:"'16",
+      text:{fr:'Une semaine en pleine nature sur l\'île de Skye, entre randonnées et paysages spectaculaires. En séjournant chez l\'habitant, nous avons découvert l\'Écosse au plus près de ses habitants, de leurs traditions et de leur quotidien.',
+            en:'A week in the wild on the Isle of Skye, hiking through spectacular scenery. Staying with locals, we saw Scotland up close: its people, traditions and daily life.'}, photos:[] },
+    { fr:'Sénégal', en:'Senegal', when:{fr:'2011', en:'2011'}, kind:'perso', coords:[14.69,-17.45], cam:'SÉNÉGAL', date:"'11",
+      text:{fr:'Un voyage familial marquant, organisé pour que ma grand-mère puisse faire un dernier grand voyage dans un pays qui lui tenait à cœur. Nous avons aussi participé à des actions solidaires auprès d\'enfants, notamment en leur apportant de l\'eau : ma première expérience de la solidarité.',
+            en:'A meaningful family trip, organised so my grandmother could make one last big journey to a country she loved. We also took part in solidarity actions with children, including bringing them water: my first experience of solidarity.'}, photos:[] },
+    { fr:'Italie', en:'Italy', when:{fr:'Depuis 2011', en:'Since 2011'}, kind:'perso', coords:[41.9,12.5], cam:'ITALIA', date:'',
+      text:{fr:'Rome, Florence, Venise, Naples, Capri et la Sicile : au fil des années, des voyages pour explorer la diversité du patrimoine italien, son histoire, son architecture et sa gastronomie.',
+            en:'Rome, Florence, Venice, Naples, Capri and Sicily: over the years, trips to explore Italy\'s varied heritage, history, architecture and food.'}, photos:[] },
+    { fr:'Espagne', en:'Spain', when:{fr:'Depuis 2009', en:'Since 2009'}, kind:'perso', coords:[40.42,-3.7], cam:'ESPAÑA', date:'',
+      text:{fr:'Saint-Sébastien, Salamanque, Séville, Málaga, Cadaqués, Sa Tuna, Saragosse, Santander, Madrid, Nerja, Bilbao ou encore Minorque : chaque région m\'a fait découvrir une nouvelle facette de la culture espagnole.',
+            en:'San Sebastián, Salamanca, Seville, Málaga, Cadaqués, Sa Tuna, Zaragoza, Santander, Madrid, Nerja, Bilbao and Menorca: each region showed me a new side of Spanish culture.'},
+      photos:[P('img-minorque-2.jpg','Minorque','Menorca'),P('img-minorque-3.jpg','Minorque','Menorca'),V('video-sa-tuna-espagne-2','Sa Tuna en vidéo','Sa Tuna on video'),P('img-sa-tuna-espagne-1.jpg','Sa Tuna','Sa Tuna'),P('img-minorque-4.jpg','Minorque','Menorca'),P('img-minorque-1.jpg','Minorque','Menorca')]},
+    { fr:'Portugal', en:'Portugal', when:{fr:'Depuis 2009', en:'Since 2009'}, kind:'perso', coords:[40.64,-8.65], cam:'PORTUGAL', date:'',
+      text:{fr:'Une place particulière puisque j\'y ai de la famille. Mes séjours réguliers à Aveiro, Porto et Lisbonne m\'ont permis de découvrir le pays de manière plus personnelle, au rythme de la vie locale.',
+            en:'A special place since I have family there. Regular stays in Aveiro, Porto and Lisbon let me experience the country more personally, at the pace of local life.'}, photos:[] },
+    { fr:'Pyrénées', en:'Pyrenees', when:{fr:'Randonnée depuis petite', en:'Hiking since childhood'}, kind:'perso', coords:[42.94,0.14], cam:'PYRÉNÉES', date:'',
+      text:{fr:'La randonnée m\'accompagne depuis toute petite. Lacs de montagne, crêtes, mers de nuages et levers de soleil : les Pyrénées sont mon terrain de jeu préféré.',
+            en:'Hiking has been part of my life since I was little. Mountain lakes, ridges, seas of clouds and sunrises: the Pyrenees are my favourite playground.'},
+      photos:[P('img-randonnee-5.jpg','Lac de montagne','Mountain lake'),P('img-randonnee-1.jpg','Sur le sentier','On the trail'),P('img-randonnee-2.jpg','Au-dessus des nuages','Above the clouds'),P('img-randonnee-4.jpg','Pâturages et sommets','Pastures and peaks'),P('img-randonnee-3.jpg','Cairn au sommet','Summit cairn'),P('img-randonnee-6.jpg','Vallée pyrénéenne','Pyrenean valley'),P('img-randonnee-7.jpg','Lever du jour','Daybreak'),P('img-randonnee-8.jpg','Crêtes au crépuscule','Ridges at dusk'),P('img-randonnee-9.jpg','Le Pic du Midi de nuit','Pic du Midi at night')]}
+  ];
+  const WINE='#6B1A24', ORANGE='#F0653A';
+  let trip = 0, frame = 0, map = null;
+  const pad3 = n => String(n).padStart(3,'0');
+
+  function renderStamps(){
+    $('stamps').innerHTML = TRIPS.map((t,i)=>`<button type="button" class="stamp ${t.kind}" data-i="${i}" aria-pressed="${i===trip}"><i></i>${t[lang]}</button>`).join('');
+  }
+  function renderCam(){
+    const t = TRIPS[trip], n = t.photos.length;
+    $('cam-place').textContent = t.cam;
+    $('cam-kind').textContent = t.kind==='pro' ? (lang==='fr'?'Expérience pro':'Work abroad') : (lang==='fr'?'Voyage perso':'Personal trip');
+    $('cam-kind').className = 'kind ' + t.kind;
+    $('cam-title').textContent = t[lang];
+    $('cam-when').textContent = t.when ? t.when[lang] : '';
+    $('cam-text').textContent = t.text[lang];
+    if (n){
+      const p = t.photos[frame];
+      $('screen').innerHTML = p.video
+        ? `<video src="${p.src}" poster="${p.poster}" autoplay muted loop playsinline aria-label="${p[lang]}"></video><span class="vid-badge">▶ vidéo</span>`
+        : `<img src="${p.src}" alt="${p[lang]}"><span class="stamp-date">${t.date||''}</span>`;
+      $('cam-count').textContent = `${pad3(frame+1)} / ${pad3(n)} · ${p[lang]}`;
+    } else {
+      $('screen').innerHTML = `<div class="empty"><div>${t[lang]}<small>${lang==='fr'?'photos à venir':'photos coming soon'}</small></div></div>`;
+      $('cam-count').textContent = '';
+    }
+    $('prev').disabled = $('next').disabled = n < 2;
+    $('prev').setAttribute('aria-label', lang==='fr'?'Photo précédente':'Previous photo');
+    $('next').setAttribute('aria-label', lang==='fr'?'Photo suivante':'Next photo');
+  }
+  function select(i){ trip = i; frame = 0; renderStamps(); renderCam(); markActive(); }
+  document.querySelectorAll('[data-trip]').forEach(a=>a.addEventListener('click',()=>{ const i=TRIPS.findIndex(t=>t.fr===a.dataset.trip); if(i>=0) setTimeout(()=>select(i),50); }));
+  $('stamps').addEventListener('click', e=>{const b=e.target.closest('.stamp'); if(b) select(+b.dataset.i);});
+  $('prev').addEventListener('click',()=>{const n=TRIPS[trip].photos.length; if(n){frame=(frame-1+n)%n; renderCam();}});
+  $('next').addEventListener('click',()=>{const n=TRIPS[trip].photos.length; if(n){frame=(frame+1)%n; renderCam();}});
+
+  /* ---------- own SVG map (data: jsvectormap world.js, Miller projection) ---------- */
+  const SVGNS='http://www.w3.org/2000/svg';
+  const VISITED=['ES','US','MA','GR','GB','BE','SN','PT','MU','IT'];
+  let M=null, vb=null, view='world', anim=null;
+  function project(lat,lng){
+    const R=6381372, d=Math.PI/180, c=M.projection.centralMeridian||0;
+    const x=R*(lng-c)*d, y=-R*Math.log(Math.tan((45+0.4*lat)*d))/0.8;
+    const ins=M.insets.find(i=>x>=i.bbox[0].x&&x<=i.bbox[1].x&&y>=i.bbox[0].y&&y<=i.bbox[1].y)||M.insets[0];
+    return { x:(x-ins.bbox[0].x)/(ins.bbox[1].x-ins.bbox[0].x)*ins.width+ins.left,
+             y:(y-ins.bbox[0].y)/(ins.bbox[1].y-ins.bbox[0].y)*ins.height+ins.top };
+  }
+  function viewBoxFor(v){
+    const a = v==='europe' ? project(60.5,-13) : project(78,-170), b = v==='europe' ? project(28.5,30) : project(-56,180);
+    let box={x:a.x,y:a.y,w:b.x-a.x,h:b.y-a.y};
+    const svg=$('map'), ratio=(svg.clientWidth||2)/(svg.clientHeight||1);
+    if(box.w/box.h < ratio){ const w=box.h*ratio; box.x-= (w-box.w)/2; box.w=w; }
+    else { const h=box.w/ratio; box.y-=(h-box.h)/2; box.h=h; }
+    return box;
+  }
+  function applyVB(){
+    const svg=$('map'); svg.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    const k = Math.max(vb.w / Math.max(1, svg.clientWidth), vb.h / Math.max(1, svg.clientHeight));
+    const lands=svg.querySelector('.lands'); if(lands) lands.setAttribute('stroke-width', 0.7*k);
+    svg.querySelectorAll('.mk').forEach(g=>{
+      g.querySelector('.dot').setAttribute('r', 7.5*k); g.querySelector('.dot').setAttribute('stroke-width', 2.5*k);
+      g.querySelector('.ring').setAttribute('r', 9*k); g.querySelector('.ring').setAttribute('stroke-width', 2*k);
+      g.querySelector('.hit').setAttribute('r', 15*k);
+    });
+  }
+  function setView(v){
+    view=v;
+    document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.view===v));
+    if(!M) return;
+    const from={...vb}, to=viewBoxFor(v), t0=performance.now(), dur=reduce?0:650;
+    cancelAnimationFrame(anim);
+    const step=t=>{ const k=dur?Math.min(1,(t-t0)/dur):1, e=1-Math.pow(1-k,3);
+      vb={x:from.x+(to.x-from.x)*e,y:from.y+(to.y-from.y)*e,w:from.w+(to.w-from.w)*e,h:from.h+(to.h-from.h)*e};
+      applyVB(); if(k<1) anim=requestAnimationFrame(step); };
+    anim=requestAnimationFrame(step);
+  }
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+  function markActive(){ document.querySelectorAll('#map .mk').forEach(g=>g.classList.toggle('active', +g.dataset.i===trip)); }
+  function initMap(){
+    M = window.__worldMap;
+    if(!M || !M.paths){ $('map-fallback').hidden=false; $('map').style.visibility='hidden'; return; }
+    const svg=$('map');
+    let html='<g class="lands">';
+    for(const code in M.paths){ html+=`<path class="land${VISITED.includes(code)?' visited':''}" d="${M.paths[code].path}"/>`; }
+    html+='</g><g class="marks">';
+    TRIPS.map((t,i)=>[t,i]).sort((x,y)=>(x[0].kind==='pro')-(y[0].kind==='pro')).forEach(([t,i])=>{ const p=project(t.coords[0],t.coords[1]);
+      html+=`<g class="mk ${t.kind}" data-i="${i}" transform="translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})"><circle class="hit" r="12" fill="transparent"/><circle class="ring" r="9"/><circle class="dot" r="7"/></g>`; });
+    html+='</g>';
+    svg.innerHTML=html;
+    vb=viewBoxFor('world'); applyVB(); markActive();
+    const tip=$('map-tip'), wrap=$('map-wrap');
+    svg.addEventListener('click',e=>{ const g=e.target.closest('.mk'); if(g) select(+g.dataset.i); });
+    svg.addEventListener('mousemove',e=>{
+      const g=e.target.closest('.mk');
+      if(!g){ tip.classList.remove('on'); return; }
+      const r=wrap.getBoundingClientRect(), d=g.querySelector('.dot').getBoundingClientRect();
+      tip.textContent=TRIPS[+g.dataset.i][lang];
+      tip.style.left=(d.left+d.width/2-r.left)+'px'; tip.style.top=(d.top-r.top)+'px'; tip.classList.add('on');
+    });
+    svg.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+    window.addEventListener('resize',()=>{ vb=viewBoxFor(view); applyVB(); });
+  }
+
+  /* ---------- language ---------- */
+  function setLang(l){
+    lang = l; root.dataset.lang = l; root.lang = l;
+    document.querySelectorAll('[data-set-lang]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.setLang===l));
+    try { localStorage.setItem('alix-lang', l); } catch(e){}
+    $('to-top').setAttribute('aria-label', l==='fr'?'Revenir en haut de la page':'Back to top');
+    renderStamps(); renderCam(); if(M) markActive();
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.setLang)));
+
+  /* ---------- tab groups ---------- */
+  function tabs(sel){
+    const ts=[...document.querySelectorAll(sel)];
+    ts.forEach(t=>t.addEventListener('click',()=>ts.forEach(x=>{const on=x===t; x.setAttribute('aria-selected',on); $(x.getAttribute('aria-controls')).hidden=!on;})));
+  }
+  tabs('.tablist [role=tab]'); tabs('.seg [role=tab]');
+
+  /* ---------- timeline thumbnails ---------- */
+  document.querySelectorAll('.tl-card').forEach(card=>{
+    const ph = card.querySelector('.detail').dataset.photos, box = card.querySelector('.thumbs');
+    if (!ph){ box.remove(); return; }
+    box.innerHTML = ph.split(';').slice(0,3).map(s=>{const [src,fr,en]=s.split('|'); return `<button type="button" data-lb="${src}" data-cap-fr="${fr}" data-cap-en="${en}"><img src="${src}" alt="" loading="lazy"></button>`;}).join('');
+  });
+
+  /* ---------- case study ---------- */
+  const cs = $('case');
+  document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>{
+    const item = btn.closest('.tl-item'), card = item.querySelector('.tl-card'), d = card.querySelector('.detail');
+    $('case-tag').innerHTML = card.querySelector('.tag').innerHTML;
+    $('case-title').innerHTML = card.querySelector('h3').innerHTML;
+    $('case-org').innerHTML = card.querySelector('.org').innerHTML + ' · ' + item.querySelector('.when').innerHTML;
+    $('case-context').innerHTML = d.querySelector('[data-part=context]').innerHTML;
+    $('case-missions').innerHTML = d.querySelector('[data-part=missions]').innerHTML;
+    $('case-gains').innerHTML = d.querySelector('[data-part=gains]').innerHTML;
+    const ph = d.dataset.photos;
+    $('case-photos').innerHTML = ph
+      ? '<div class="case-photos">' + ph.split(';').map((s,i)=>{const [src,fr,en]=s.split('|'); return `<button type="button" data-lb="${src}" data-cap-fr="${fr}" data-cap-en="${en}"><figure class="pola" style="--rot:${i%2?3:-3}deg"><img src="${src}" alt="${lang==='fr'?fr:en}"><figcaption><span lang="fr">${fr}</span><span lang="en">${en}</span></figcaption></figure></button>`;}).join('') + '</div>'
+      : `<p class="case-soon"><span lang="fr">photos à venir</span><span lang="en">photos coming soon</span></p>`;
+    $('case-close').setAttribute('aria-label', lang==='fr'?'Fermer':'Close');
+    if (cs.showModal) cs.showModal();
+  }));
+  $('case-close').addEventListener('click',()=>cs.close());
+  cs.addEventListener('click',e=>{ if(e.target===cs) cs.close(); });
+
+  /* ---------- lightbox ---------- */
+  const lb = $('lb');
+  document.addEventListener('click', e=>{
+    const b = e.target.closest('[data-lb]'); if(!b) return;
+    const cap = b.dataset[lang==='fr'?'capFr':'capEn'] || '';
+    $('lb-img').src = b.dataset.lb; $('lb-img').alt = cap; $('lb-cap').textContent = cap;
+    if (lb.showModal) lb.showModal();
+  });
+  $('lb-close').addEventListener('click',()=>lb.close());
+  lb.addEventListener('click', e=>{ if(e.target===lb) lb.close(); });
+
+  /* ---------- count-up ---------- */
+  if (!reduce && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver(es=>es.forEach(en=>{
+      if(!en.isIntersecting) return; io.unobserve(en.target);
+      const el=en.target, end=+el.dataset.count, t0=performance.now(), dur=900;
+      const step=t=>{const k=Math.min(1,(t-t0)/dur); el.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step);};
+      requestAnimationFrame(step);
+    }),{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+  }
+
+  /* ---------- copy ---------- */
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click', async()=>{
+    const original=b.innerHTML;
+    try{ await navigator.clipboard.writeText(b.dataset.copy); b.textContent = lang==='fr'?'Copié ✓':'Copied ✓'; }
+    catch(e){ b.textContent = lang==='fr'?'Sélectionnez le texte':'Select the text'; }
+    setTimeout(()=>{b.innerHTML=original;},1800);
+  }));
+
+  /* ---------- nav highlight + back to top ---------- */
+  const links=[...document.querySelectorAll('.nav-links a')];
+  if ('IntersectionObserver' in window){
+    const io2=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting) links.forEach(a=>a.classList.toggle('on', a.getAttribute('href')==='#'+en.target.id)); }),{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section[id]').forEach(s=>io2.observe(s));
+  }
+  const top = $('to-top');
+  const onScroll = ()=>top.classList.toggle('show', window.scrollY > 500);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  top.addEventListener('click',()=>{ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
+
+  /* ---------- CV download ---------- */
+  const dl=$('dl-cv'), msg=$('dl-msg');
+  const say=(fr,en)=>{msg.innerHTML=`<span lang="fr">${fr}</span><span lang="en">${en}</span>`;};
+  /* outside Claude (GitHub Pages…): a normal download link */
+  if (!(window.claude && window.claude.use)){
+    dl.hidden=false;
+    dl.addEventListener('click',()=>{ const a=document.createElement('a'); a.href='CV_Alix_Bambou.pdf'; a.download='CV_Alix_Bambou.pdf'; document.body.appendChild(a); a.click(); a.remove(); });
+  }
+  if (window.claude && window.claude.use){
+    window.claude.use('downloads').then(d=>{
+      if(!d) return;
+      dl.hidden=false;
+      dl.addEventListener('click', async()=>{
+        try{
+          const res=await fetch('CV_Alix_Bambou.pdf'); if(!res.ok) throw {code:'fetch'};
+          await d.save({filename:'CV_Alix_Bambou.pdf', data:await res.blob()});
+          say('CV téléchargé ✓','Résumé downloaded ✓');
+        }catch(err){
+          if(err && err.code==='declined') say('Téléchargement annulé.','Download cancelled.');
+          else say('Téléchargement indisponible ici : utilisez « Ouvrir le PDF ».','Download unavailable here: use "Open the PDF".');
+        }
+      });
+    }).catch(()=>{});
+  }
+
+  setLang(lang);
+  initMap();
+})();
+</script>
+
+</body>
+</html>
